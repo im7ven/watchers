@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "./auth/Provider";
-import { Theme } from "@radix-ui/themes";
+import { Theme, ThemePanel } from "@radix-ui/themes";
 import QueryClientProvider from "./QueryClientProvider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,7 +23,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <QueryClientProvider>
           <AuthProvider>
-            <Theme>{children}</Theme>
+            <Theme appearance="dark" accentColor="jade" grayColor="sage">
+              {children}
+            </Theme>
           </AuthProvider>
         </QueryClientProvider>
       </body>

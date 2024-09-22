@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button } from "@radix-ui/themes";
+import { Button, Grid, Box } from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -42,23 +42,25 @@ export default function Home() {
       <Link href="api/auth/signin">Login</Link>
       <Link href="api/auth/signout">Logout</Link>
 
-      {loading ? (
-        <p>Loading movies...</p>
-      ) : (
-        movies.map((movie) => (
-          <div key={movie.id}>
-            <h3>{movie.title}</h3>
+      <Grid
+        columns={{ initial: "3", sm: "5", md: "6" }}
+        gap="1"
+        maxWidth={{ initial: "450px", sm: "800px", md: "1000px" }}
+        mx="auto"
+      >
+        {movies.map((movie) => (
+          <Box key={movie.id}>
             <Link href={`/movie/${movie.id}`}>
               <Image
-                width={90}
+                width={150}
                 height={300}
                 src={posterUrl + movie.poster_path}
                 alt="poster"
               />
             </Link>
-          </div>
-        ))
-      )}
+          </Box>
+        ))}
+      </Grid>
     </main>
   );
 }

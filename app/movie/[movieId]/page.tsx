@@ -39,8 +39,8 @@ const MoviePage = ({ params: { movieId } }: Props) => {
   );
 
   const castSlides =
-    movie?.credits.cast.map((cast) => ({
-      id: cast.id,
+    movie?.credits.cast.map((cast, index) => ({
+      id: index,
       name: cast.name,
       character: cast.character,
       src: cast.profile_path ? posterPath + cast.profile_path : placeholder,
@@ -48,16 +48,16 @@ const MoviePage = ({ params: { movieId } }: Props) => {
     })) || [];
 
   const crewSlides =
-    movie?.credits.crew.map((crew) => ({
-      id: crew.id,
+    movie?.credits.crew.map((crew, index) => ({
+      id: index,
       name: crew.name,
       src: crew.profile_path ? posterPath + crew.profile_path : placeholder,
       alt: crew.name,
     })) || [];
 
   const similarFilmSlides =
-    movie?.similar.results.map((media) => ({
-      id: media.id,
+    movie?.similar.results.map((media, index) => ({
+      id: index,
       name: media.title,
       src: posterPath + media.poster_path,
       alt: media.title,

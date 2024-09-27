@@ -52,7 +52,7 @@ type SimilarMedia = {
   results: Media[];
 };
 
-type Movie = {
+type MediaDetail = {
   id: number;
   title: string;
   poster_path?: string;
@@ -74,7 +74,7 @@ type Movie = {
 
 const fetchMovieDetails = async (movieId: string) => {
   try {
-    const { data } = await apiClient.get<Movie>(
+    const { data } = await apiClient.get<MediaDetail>(
       `/movie/${movieId}?append_to_response=credits,videos,similar`
     );
     return data;

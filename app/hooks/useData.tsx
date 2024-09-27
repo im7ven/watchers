@@ -11,7 +11,6 @@ const useData = <T,>(endpoint: string, key: string[]) => {
     queryFn: async () => {
       try {
         const { data } = await apiClient.get<MediaResponse<T>>(endpoint);
-        console.log("HEREEE", data);
         return data;
       } catch (error) {
         throw new Error(

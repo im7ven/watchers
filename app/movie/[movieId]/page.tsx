@@ -21,6 +21,7 @@ import { CiHeart } from "react-icons/ci";
 import { TbPointFilled } from "react-icons/tb";
 import { FaStar } from "react-icons/fa";
 import MovieDataList from "@/app/components/MovieDataList";
+import useMediaCredits from "@/app/hooks/useTvSeriesCredits";
 
 type Props = {
   params: { movieId: string };
@@ -30,6 +31,7 @@ const posterPath = "https://image.tmdb.org/t/p/w500";
 
 const MoviePage = ({ params: { movieId } }: Props) => {
   const { data: movie, isError, isLoading } = useMovieDetails(movieId);
+  const { castSlides, crewSlides } = useMediaCredits(movieId, true);
 
   if (isLoading) {
     return <Skeleton />;
@@ -37,23 +39,6 @@ const MoviePage = ({ params: { movieId } }: Props) => {
   const videoTrailer = movie?.videos.results.find(
     (movie) => movie.type === "Trailer"
   );
-
-  const castSlides =
-    movie?.credits.cast.map((cast, index) => ({
-      id: index,
-      name: cast.name,
-      character: cast.character,
-      src: cast.profile_path ? posterPath + cast.profile_path : placeholder,
-      alt: cast.name,
-    })) || [];
-
-  const crewSlides =
-    movie?.credits.crew.map((crew, index) => ({
-      id: index,
-      name: crew.name,
-      src: crew.profile_path ? posterPath + crew.profile_path : placeholder,
-      alt: crew.name,
-    })) || [];
 
   const similarFilmSlides =
     movie?.similar.results.map((media, index) => ({

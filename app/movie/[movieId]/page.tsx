@@ -1,7 +1,7 @@
 "use client";
 
 import VideoPlayer from "@/app/components/VideoPlayer";
-import useMovieDetails from "@/app/hooks/useMovieDetails";
+import useMovieDetails from "@/app/hooks/useMediaDetails";
 import {
   Badge,
   Box,
@@ -21,7 +21,8 @@ import { CiHeart } from "react-icons/ci";
 import { TbPointFilled } from "react-icons/tb";
 import { FaStar } from "react-icons/fa";
 import MovieDataList from "@/app/components/MovieDataList";
-import useMediaCredits from "@/app/hooks/useTvSeriesCredits";
+import useMediaCredits from "@/app/hooks/useMediaCredits";
+import useMediaDetails from "@/app/hooks/useMediaDetails";
 
 type Props = {
   params: { movieId: string };
@@ -30,8 +31,8 @@ type Props = {
 const posterPath = "https://image.tmdb.org/t/p/w500";
 
 const MoviePage = ({ params: { movieId } }: Props) => {
-  const { data: movie, isError, isLoading } = useMovieDetails(movieId);
-  const { castSlides, crewSlides } = useMediaCredits(movieId, true);
+  const { data: movie, isError, isLoading } = useMediaDetails(movieId, "movie");
+  const { castSlides, crewSlides } = useMediaCredits(movieId, "movie");
 
   if (isLoading) {
     return <Skeleton />;

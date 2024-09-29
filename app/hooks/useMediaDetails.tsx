@@ -55,6 +55,9 @@ type SimilarMedia = {
 type MediaDetail = {
   id: number;
   title: string;
+  name?: string;
+  first_air_date: string;
+  number_of_seasons: string;
   poster_path?: string;
   genres: Genre[];
   budget: number;
@@ -72,13 +75,16 @@ type MediaDetail = {
   similar: SimilarMedia;
 };
 
-const fetchMovieDetails = async (movieId: string) => {
+const fetchMediaDetails = async (mediaId: string, mediaType: string) => {
   try {
-    const { data } = await apiClient.get<MediaDetail>(`/movie/${movieId}`, {
-      params: {
-        append_to_response: "credits,videos,similar",
-      },
-    });
+    const { data } = await apiClient.get<MediaDetail>(
+      `/${mediaType}/${mediaId}`,
+      {
+        params: {
+          append_to_response: "credits,videos,similar",
+        },
+      }
+    );
     return data;
   } catch (error) {
     throw new Error(
@@ -87,11 +93,11 @@ const fetchMovieDetails = async (movieId: string) => {
   }
 };
 
-const useMovieDetails = (movieId: string) => {
+const useMediaDetails = (mediaId: string, mediaType: string) => {
   return useQuery({
-    queryKey: ["movie", movieId],
-    queryFn: () => fetchMovieDetails(movieId),
+    queryKey: ["movie", mediaId],
+    queryFn: () => fetchMediaDetails(mediaId, mediaType),
   });
 };
 
-export default useMovieDetails;
+export default useMediaDetails;

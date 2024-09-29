@@ -1,13 +1,20 @@
 "use client";
 
-import { Box, Flex, Grid, Tabs, Text } from "@radix-ui/themes";
+import {
+  Box,
+  Flex,
+  Grid,
+  Skeleton,
+  Tabs,
+  Text,
+  Container,
+} from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import usePopularMovie from "./hooks/usePopularMovie";
 import useData from "./hooks/useData";
 
-type Movie = {
+type MediaCover = {
   id: number;
   title: string;
   poster_path: string;
@@ -18,7 +25,7 @@ const posterUrl = `https://image.tmdb.org/t/p/w500`;
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState("/movie/popular");
   const [isMovieSelected, setIsMovieSelected] = useState("movie");
-  const { data } = useData<Movie>(selectedTab, [selectedTab]);
+  const { data, isLoading } = useData<MediaCover>(selectedTab, [selectedTab]);
   const [defaultTabValue, setDefaultTabValue] = useState("/movie/popular");
 
   const onSelectMovie = () => {
@@ -31,12 +38,158 @@ export default function Home() {
     setSelectedTab("tv/popular");
   };
 
-  // useEffect(() => {
-  //   const defaultTabValue = isMovieSelected ? "/movie/popular" : "/tv/popular";
-  //   setDefaultTabValue(defaultTabValue);
-  // }, [isMovieSelected]);
-
-  // console.log(selectedTab);
+  if (isLoading) {
+    return (
+      <Box mt="2">
+        <Skeleton height="30px" />
+        <Container>
+          <Grid
+            columns={{ initial: "3", xs: "5", sm: "6" }}
+            gap={{ initial: "2", md: "3" }}
+            mt="2"
+            mx="auto"
+          >
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+            <Skeleton
+              maxWidth="155px"
+              height={{ initial: "150px", md: "200px" }}
+            />
+          </Grid>
+        </Container>
+      </Box>
+    );
+  }
 
   return (
     <main>

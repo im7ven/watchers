@@ -1,25 +1,22 @@
 "use client";
 
 import EmblaCarousel from "@/app/components/EmblaCarousel";
-import MovieDataList from "@/app/components/MovieDataList";
 import VideoPlayer from "@/app/components/VideoPlayer";
-import useTvSeriesDetails from "@/app/hooks/useTvSeriesDetails";
+import useMediaCredits from "@/app/hooks/useMediaCredits";
+import useMediaDetails from "@/app/hooks/useMediaDetails";
 import {
-  Flex,
-  Box,
-  Heading,
-  Button,
   Badge,
+  Box,
+  Button,
   Container,
+  Flex,
+  Heading,
   Text,
-  Skeleton,
 } from "@radix-ui/themes";
-import React, { use } from "react";
+import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { TbPointFilled } from "react-icons/tb";
-import Image from "next/image";
-import useMediaCredits from "@/app/hooks/useTvSeriesCredits";
 
 type Props = {
   params: { tvId: string };
@@ -28,8 +25,8 @@ type Props = {
 const posterUrl = `https://image.tmdb.org/t/p/w500`;
 
 const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
-  const { data: tvSeries, isLoading, isError } = useTvSeriesDetails(tvId);
-  const { castSlides, crewSlides } = useMediaCredits(tvId, false);
+  const { data: tvSeries, isLoading, isError } = useMediaDetails(tvId, "tv");
+  const { castSlides, crewSlides } = useMediaCredits(tvId, "tv");
 
   const videoTrailer = tvSeries?.videos?.results?.find(
     (tv) => tv.type === "Trailer"

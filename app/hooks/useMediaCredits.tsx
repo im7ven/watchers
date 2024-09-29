@@ -1,14 +1,10 @@
-import useMovieDetails from "./useMovieDetails";
-import useTvSeriesDetails from "./useTvSeriesDetails";
+import useMediaDetails from "./useMediaDetails";
 import placeholderImg from "@/public/headshot-placeholder.png";
 
 const posterPath = "https://image.tmdb.org/t/p/w500";
 
-const useMediaCredits = (mediaId: string, isMovieType: boolean) => {
-  const { data: tvSeries } = useTvSeriesDetails(mediaId);
-  const { data: movies } = useMovieDetails(mediaId);
-
-  const data = isMovieType ? movies : tvSeries;
+const useMediaCredits = (mediaId: string, mediaType: string) => {
+  const { data } = useMediaDetails(mediaId, mediaType);
 
   const crewSlides =
     data?.credits.crew.map((crew, index) => ({

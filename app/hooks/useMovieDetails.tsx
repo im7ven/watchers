@@ -74,9 +74,11 @@ type MediaDetail = {
 
 const fetchMovieDetails = async (movieId: string) => {
   try {
-    const { data } = await apiClient.get<MediaDetail>(
-      `/movie/${movieId}?append_to_response=credits,videos,similar`
-    );
+    const { data } = await apiClient.get<MediaDetail>(`/movie/${movieId}`, {
+      params: {
+        append_to_response: "credits,videos,similar",
+      },
+    });
     return data;
   } catch (error) {
     throw new Error(

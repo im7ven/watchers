@@ -1,16 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import apiClient from "../services/api-client";
 
 type MediaResponse<T> = {
   results: T[];
+  page: number;
+  total_pages: number;
 };
 
 const useData = <T,>(endpoint: string, key: string[]) => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: key,
-    queryFn: async () => {
+    queryFn: async ({ pageParam = 1 }) => {
       try {
-        const { data } = await apiClient.get<MediaResponse<T>>(endpoint);
+        const { data } = await apiClient.get<MediaResponse<T>>(endpoint, {
+          params: {
+            page: pageParam,
+          },
+        });
         return data;
       } catch (error) {
         throw new Error(
@@ -18,6 +24,13 @@ const useData = <T,>(endpoint: string, key: string[]) => {
         );
       }
     },
+    getNextPageParam: (lastPage) => {
+      return lastPage.page < lastPage.total_pages
+        ? lastPage.page + 1
+        : undefined;
+    },
+
+    initialPageParam: 1,
   });
 };
 

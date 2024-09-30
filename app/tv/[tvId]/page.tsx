@@ -14,6 +14,7 @@ import {
   Text,
 } from "@radix-ui/themes";
 import Image from "next/image";
+import React from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { TbPointFilled } from "react-icons/tb";

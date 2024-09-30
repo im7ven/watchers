@@ -8,11 +8,13 @@ import {
   Tabs,
   Text,
   Container,
+  Button,
 } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useData from "./hooks/useData";
+import GridSkeleton from "./components/GridSkeleton";
 
 type MediaCover = {
   id: number;
@@ -25,7 +27,8 @@ const posterUrl = `https://image.tmdb.org/t/p/w500`;
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState("/movie/popular");
   const [isMovieSelected, setIsMovieSelected] = useState("movie");
-  const { data, isLoading } = useData<MediaCover>(selectedTab, [selectedTab]);
+  const { data, isLoading, isFetchingNextPage, fetchNextPage } =
+    useData<MediaCover>(selectedTab, [selectedTab]);
   const [defaultTabValue, setDefaultTabValue] = useState("/movie/popular");
 
   const onSelectMovie = () => {
@@ -39,156 +42,7 @@ export default function Home() {
   };
 
   if (isLoading) {
-    return (
-      <Box mt="2">
-        <Skeleton height="30px" />
-        <Container>
-          <Grid
-            columns={{ initial: "3", xs: "5", sm: "6" }}
-            gap={{ initial: "2", md: "3" }}
-            mt="2"
-            mx="auto"
-          >
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-            <Skeleton
-              maxWidth="155px"
-              height={{ initial: "150px", md: "200px" }}
-            />
-          </Grid>
-        </Container>
-      </Box>
-    );
+    return <GridSkeleton />;
   }
 
   return (
@@ -249,23 +103,30 @@ export default function Home() {
         )}
       </Flex>
       <Grid columns={{ initial: "3", xs: "5", sm: "6" }} gap="1" mx="auto">
-        {data?.results.map((movie) => (
-          <Box key={movie.id}>
-            <Link
-              href={`/${isMovieSelected === "movie" ? "movie" : "tv"}/${
-                movie.id
-              }`}
-            >
-              <Image
-                width={165}
-                height={300}
-                src={posterUrl + movie.poster_path}
-                alt="poster"
-              />
-            </Link>
-          </Box>
+        {data?.pages.map((page, index) => (
+          <React.Fragment key={index}>
+            {page?.results.map((movie) => (
+              <Box key={movie.id}>
+                <Link
+                  href={`/${isMovieSelected === "movie" ? "movie" : "tv"}/${
+                    movie.id
+                  }`}
+                >
+                  <Image
+                    width={165}
+                    height={300}
+                    src={posterUrl + movie.poster_path}
+                    alt="poster"
+                  />
+                </Link>
+              </Box>
+            ))}
+          </React.Fragment>
         ))}
       </Grid>
+      <Button disabled={isFetchingNextPage} onClick={() => fetchNextPage()}>
+        Load More
+      </Button>
     </main>
   );
 }

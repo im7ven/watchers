@@ -6,6 +6,7 @@ import AuthProvider from "./auth/Provider";
 import { Container, Theme, ThemePanel } from "@radix-ui/themes";
 import QueryClientProvider from "./QueryClientProvider";
 import Navbar from "./components/Navbar";
+import { SearchContextProvider } from "./contexts/SearchContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,8 +27,10 @@ export default function RootLayout({
           <AuthProvider>
             <Theme appearance="dark" accentColor="jade" grayColor="sage">
               <Container maxWidth="1000px">
-                <Navbar />
-                {children}
+                <SearchContextProvider>
+                  <Navbar />
+                  {children}
+                </SearchContextProvider>
               </Container>
             </Theme>
           </AuthProvider>

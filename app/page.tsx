@@ -29,7 +29,6 @@ export default function Home() {
   const [isMovieSelected, setIsMovieSelected] = useState("movie");
   const { data, isLoading, isFetchingNextPage, fetchNextPage } =
     useData<MediaCover>(selectedTab, [selectedTab]);
-  const [defaultTabValue, setDefaultTabValue] = useState("/movie/popular");
 
   const onSelectMovie = () => {
     setIsMovieSelected("movie");

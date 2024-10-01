@@ -31,6 +31,7 @@ const useData = <T,>(endpoint: string, key: string[]) => {
     },
 
     initialPageParam: 1,
+    staleTime: 5 * 60 * 1000,
   });
 };
 

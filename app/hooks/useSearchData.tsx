@@ -19,7 +19,7 @@ const useSearchData = (searchValue: string) => {
     queryKey: [searchValue],
     queryFn: () => {
       return apiClient
-        .get("search/movie?append_to_response=tv", {
+        .get("search/multi", {
           params: {
             query: searchValue,
           },

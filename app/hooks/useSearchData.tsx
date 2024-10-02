@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import apiClient from "../services/api-client";
 
 type MediaData = {
@@ -15,24 +15,18 @@ type MediaResponse = {
 };
 
 const useSearchData = (searchValue: string) => {
-  return useInfiniteQuery<MediaResponse>({
+  return useQuery<MediaResponse>({
     queryKey: [searchValue],
-    queryFn: ({ pageParam = 1 }) => {
+    queryFn: () => {
       return apiClient
-        .get("search/multi", {
+        .get("search/movie?append_to_response=tv", {
           params: {
-            page: pageParam,
             query: searchValue,
           },
         })
         .then((res) => res.data);
     },
-    getNextPageParam: (lastPage) => {
-      return lastPage.page < lastPage.total_pages
-        ? lastPage.page + 1
-        : undefined;
-    },
-    initialPageParam: 1,
+
     enabled: !!searchValue,
   });
 };

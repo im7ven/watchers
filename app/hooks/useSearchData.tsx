@@ -4,14 +4,13 @@ import apiClient from "../services/api-client";
 type MediaData = {
   id: number;
   title: string;
+  name: string;
   poster_path: string;
   media_type: string;
 };
 
 type MediaResponse = {
   results: MediaData[];
-  page: number;
-  total_pages: number;
 };
 
 const useSearchData = (searchValue: string) => {

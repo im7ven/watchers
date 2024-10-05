@@ -32,18 +32,19 @@ export default function Home() {
 
   const onSelectMovie = () => {
     setIsMovieSelected("movie");
-    setSelectedTab("movie/popular");
+    setSelectedTab("/movie/popular");
   };
 
   const onSelectTv = () => {
     setIsMovieSelected("tv");
-    setSelectedTab("tv/popular");
+    setSelectedTab("/tv/popular");
   };
 
   if (isLoading) {
     return <GridSkeleton />;
   }
 
+  console.log(selectedTab);
   return (
     <main>
       <Flex justify="between" align="center">
@@ -68,7 +69,8 @@ export default function Home() {
         </Flex>
         {isMovieSelected === "movie" && (
           <Tabs.Root
-            defaultValue={"/movie/popular"}
+            value={selectedTab}
+            // defaultValue={"/movie/popular"}
             onValueChange={(value) => setSelectedTab(value)}
           >
             <Tabs.List
@@ -86,7 +88,8 @@ export default function Home() {
         )}
         {isMovieSelected === "tv" && (
           <Tabs.Root
-            defaultValue={"/tv/popular"}
+            // defaultValue={"/tv/popular"}
+            value={selectedTab}
             onValueChange={(value) => setSelectedTab(value)}
           >
             <Tabs.List

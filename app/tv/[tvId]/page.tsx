@@ -1,6 +1,7 @@
 "use client";
 
 import EmblaCarousel from "@/app/components/EmblaCarousel";
+import MovieDataList from "@/app/components/MovieDataList";
 import VideoPlayer from "@/app/components/VideoPlayer";
 import useMediaCredits from "@/app/hooks/useMediaCredits";
 import useMediaDetails from "@/app/hooks/useMediaDetails";
@@ -27,7 +28,10 @@ const posterUrl = `https://image.tmdb.org/t/p/w500`;
 
 const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
   const { data: tvSeries, isLoading, isError } = useMediaDetails(tvId, "tv");
-  const { castSlides, crewSlides } = useMediaCredits(tvId, "tv");
+  const { castSlides, crewSlides, similarMediaSlides } = useMediaCredits(
+    tvId,
+    "tv"
+  );
 
   const videoTrailer = tvSeries?.videos?.results?.find(
     (tv) => tv.type === "Trailer"
@@ -91,7 +95,7 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
         )}
         {castSlides.length > 1 && (
           <>
-            <Heading className="mt-3" as="h2">
+            <Heading className="my-3" as="h2">
               Cast
             </Heading>
             <EmblaCarousel slides={castSlides} />
@@ -100,21 +104,17 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
 
         {crewSlides.length > 1 && (
           <>
-            <Heading className="mt-3" as="h2">
-              Cast
+            <Heading className="my-3" as="h2">
+              Crew
             </Heading>
             <EmblaCarousel slides={crewSlides} />
           </>
         )}
-        {/* 
-        <MovieDataList
-          releaseDate={movie?.release_date}
-          budget={movie?.budget}
-          revenue={movie?.revenue}
-          country={movie?.original_language.toUpperCase()}
-        /> */}
       </Container>
-      {/* <EmblaCarousel slides={similarFilmSlides} /> */}
+      <Heading className="my-3" as="h2">
+        Similar Series
+      </Heading>
+      <EmblaCarousel slides={similarMediaSlides} />
     </main>
   );
 };

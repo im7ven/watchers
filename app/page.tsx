@@ -9,12 +9,14 @@ import {
   Text,
   Container,
   Button,
+  Spinner,
 } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import useData from "./hooks/useData";
 import GridSkeleton from "./components/GridSkeleton";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 type MediaCover = {
   id: number;
@@ -27,7 +29,7 @@ const posterUrl = `https://image.tmdb.org/t/p/w500`;
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState("/movie/popular");
   const [isMovieSelected, setIsMovieSelected] = useState("movie");
-  const { data, isLoading, isFetchingNextPage, fetchNextPage } =
+  const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } =
     useData<MediaCover>(selectedTab, [selectedTab]);
 
   const onSelectMovie = () => {
@@ -43,6 +45,9 @@ export default function Home() {
   if (isLoading) {
     return <GridSkeleton />;
   }
+
+  const fetchedMediaCount =
+    data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
 
   console.log(selectedTab);
   return (
@@ -104,31 +109,35 @@ export default function Home() {
           </Tabs.Root>
         )}
       </Flex>
-      <Grid columns={{ initial: "3", xs: "5", sm: "6" }} gap="1" mx="auto">
-        {data?.pages.map((page, index) => (
-          <React.Fragment key={index}>
-            {page?.results.map((movie) => (
-              <Box key={movie.id}>
-                <Link
-                  href={`/${isMovieSelected === "movie" ? "movie" : "tv"}/${
-                    movie.id
-                  }`}
-                >
-                  <Image
-                    width={165}
-                    height={300}
-                    src={posterUrl + movie.poster_path}
-                    alt="poster"
-                  />
-                </Link>
-              </Box>
-            ))}
-          </React.Fragment>
-        ))}
-      </Grid>
-      <Button disabled={isFetchingNextPage} onClick={() => fetchNextPage()}>
-        Load More
-      </Button>
+      <InfiniteScroll
+        dataLength={fetchedMediaCount}
+        hasMore={!!hasNextPage}
+        next={() => fetchNextPage()}
+        loader={<Spinner />}
+      >
+        <Grid columns={{ initial: "3", xs: "5", sm: "6" }} gap="1" mx="auto">
+          {data?.pages.map((page, index) => (
+            <React.Fragment key={index}>
+              {page?.results.map((movie) => (
+                <Box key={movie.id}>
+                  <Link
+                    href={`/${isMovieSelected === "movie" ? "movie" : "tv"}/${
+                      movie.id
+                    }`}
+                  >
+                    <Image
+                      width={165}
+                      height={300}
+                      src={posterUrl + movie.poster_path}
+                      alt="poster"
+                    />
+                  </Link>
+                </Box>
+              ))}
+            </React.Fragment>
+          ))}
+        </Grid>
+      </InfiniteScroll>
     </main>
   );
 }

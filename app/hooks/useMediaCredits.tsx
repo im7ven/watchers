@@ -1,5 +1,6 @@
 import useMediaDetails from "./useMediaDetails";
 import placeholderImg from "@/public/headshot-placeholder.png";
+import mediaPlaceholder from "@/public/movie_placeholder.png";
 
 const posterPath = "https://image.tmdb.org/t/p/w500";
 
@@ -23,7 +24,17 @@ const useMediaCredits = (mediaId: string, mediaType: string) => {
       alt: cast.name,
     })) || [];
 
-  return { castSlides, crewSlides };
+  const similarMediaSlides =
+    data?.similar.results.map((media, index) => ({
+      id: index,
+      name: media.title,
+      src: media.poster_path
+        ? posterPath + media.poster_path
+        : mediaPlaceholder,
+      alt: media.title,
+    })) || [];
+
+  return { castSlides, crewSlides, similarMediaSlides };
 };
 
 export default useMediaCredits;

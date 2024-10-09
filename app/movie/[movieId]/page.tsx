@@ -1,13 +1,11 @@
 "use client";
 
 import VideoPlayer from "@/app/components/VideoPlayer";
-import useMovieDetails from "@/app/hooks/useMediaDetails";
 import {
   Badge,
   Box,
   Button,
   Container,
-  DataList,
   Flex,
   Heading,
   Skeleton,
@@ -15,7 +13,6 @@ import {
 } from "@radix-ui/themes";
 import Image from "next/image";
 import React from "react";
-import placeholder from "@/public/headshot-placeholder.png";
 import EmblaCarousel from "@/app/components/EmblaCarousel";
 import { CiHeart } from "react-icons/ci";
 import { TbPointFilled } from "react-icons/tb";
@@ -32,7 +29,10 @@ const posterPath = "https://image.tmdb.org/t/p/w500";
 
 const MoviePage = ({ params: { movieId } }: Props) => {
   const { data: movie, isError, isLoading } = useMediaDetails(movieId, "movie");
-  const { castSlides, crewSlides } = useMediaCredits(movieId, "movie");
+  const { castSlides, crewSlides, similarMediaSlides } = useMediaCredits(
+    movieId,
+    "movie"
+  );
 
   if (isLoading) {
     return <Skeleton />;
@@ -40,14 +40,6 @@ const MoviePage = ({ params: { movieId } }: Props) => {
   const videoTrailer = movie?.videos.results.find(
     (movie) => movie.type === "Trailer"
   );
-
-  const similarFilmSlides =
-    movie?.similar.results.map((media, index) => ({
-      id: index,
-      name: media.title,
-      src: posterPath + media.poster_path,
-      alt: media.title,
-    })) || [];
 
   return (
     <main className="p-4">
@@ -95,12 +87,12 @@ const MoviePage = ({ params: { movieId } }: Props) => {
         {videoTrailer && (
           <VideoPlayer videoId={videoTrailer.key} site={videoTrailer.site} />
         )}
-        <Heading className="mt-3" as="h2">
+        <Heading className="my-3" as="h2">
           Cast
         </Heading>
         <EmblaCarousel slides={castSlides} />
 
-        <Heading className="mt-3" as="h2">
+        <Heading className="my-3" as="h2">
           Cast
         </Heading>
         <EmblaCarousel slides={crewSlides} />
@@ -112,7 +104,10 @@ const MoviePage = ({ params: { movieId } }: Props) => {
           country={movie?.original_language.toUpperCase()}
         />
       </Container>
-      <EmblaCarousel slides={similarFilmSlides} />
+      <Heading className="mb-3" as="h2">
+        Similar Films
+      </Heading>
+      <EmblaCarousel slides={similarMediaSlides} />
     </main>
   );
 };

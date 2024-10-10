@@ -46,7 +46,7 @@ const MoviePage = ({ params: { movieId } }: Props) => {
       <Container size="2">
         <Flex gap="3">
           <Image
-            className="rounded"
+            className="rounded md:w-[150px]"
             width={100}
             height={100}
             alt={`${movie?.title} poster`}

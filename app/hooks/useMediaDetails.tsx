@@ -11,12 +11,16 @@ type Cast = {
   name: string;
   character: string;
   profile_path?: string;
+  media_type: string;
+  gender?: number;
 };
 
 type Crew = {
   id: number;
   name: string;
   profile_path?: string;
+  media_type: string;
+  gender?: number;
 };
 
 type Credit = {
@@ -46,13 +50,15 @@ type Media = {
   id: number;
   title: string;
   poster_path?: string;
+  media_type: string;
+  release_date?: string;
 };
 
 type SimilarMedia = {
   results: Media[];
 };
 
-type MediaDetail = {
+export type MediaDetail = {
   id: number;
   title: string;
   name?: string;

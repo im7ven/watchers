@@ -11,6 +11,7 @@ const useMediaCredits = (mediaId: string, mediaType: string) => {
     data?.credits.crew.map((crew) => ({
       id: crew.id,
       name: crew?.name,
+      media_type: "person",
       src: crew.profile_path ? posterPath + crew.profile_path : placeholderImg,
       alt: crew.name,
     })) || [];
@@ -19,6 +20,7 @@ const useMediaCredits = (mediaId: string, mediaType: string) => {
     data?.credits.cast.map((cast) => ({
       id: cast.id,
       name: cast?.name,
+      media_type: "person",
       character: cast.character,
       src: cast.profile_path ? posterPath + cast.profile_path : placeholderImg,
       alt: cast.name,

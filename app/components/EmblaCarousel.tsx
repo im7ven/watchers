@@ -11,7 +11,6 @@ type Slide = {
   character?: string;
   src?: StaticImageData | string;
   alt: string;
-  gender: number;
   posterPath?: string;
   media_type?: string;
 };

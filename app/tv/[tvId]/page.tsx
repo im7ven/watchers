@@ -111,10 +111,14 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
           </>
         )}
       </Container>
-      <Heading className="my-3" as="h2">
-        Similar Series
-      </Heading>
-      <EmblaCarousel slides={similarMediaSlides} />
+      {similarMediaSlides.length > 1 && (
+        <>
+          <Heading className="my-3" as="h2">
+            Similar Series
+          </Heading>
+          <EmblaCarousel slides={similarMediaSlides} />
+        </>
+      )}
     </main>
   );
 };

@@ -30,6 +30,7 @@ const useMediaCredits = (mediaId: string, mediaType: string) => {
     data?.similar.results.map((media) => ({
       id: media.id,
       name: media.title,
+      media_type: mediaType,
       src: media.poster_path
         ? posterPath + media.poster_path
         : mediaPlaceholder,

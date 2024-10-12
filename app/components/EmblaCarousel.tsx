@@ -12,7 +12,7 @@ type Slide = {
   src?: StaticImageData | string;
   alt: string;
   posterPath?: string;
-  media_type?: string;
+  media_type: string;
 };
 
 type Props = {

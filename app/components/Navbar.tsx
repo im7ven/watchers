@@ -63,7 +63,7 @@ const Navbar = () => {
           {status === "authenticated" ? (
             <UserDropDown session={sessionData} />
           ) : (
-            <Link href="api/auth/signin">
+            <Link href="/api/auth/signin">
               <Button>Login</Button>
             </Link>
           )}

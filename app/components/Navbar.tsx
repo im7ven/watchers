@@ -25,6 +25,7 @@ const Navbar = () => {
       }
       setSearchVal(searchRef.current.value);
       setIsInvalid(false);
+      searchRef.current.value = "";
     }
     if (currentPath !== "search") {
       router.push("/search");

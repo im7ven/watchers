@@ -11,7 +11,7 @@ const usePersonCredits = (personId: string) => {
       id: media.id,
       name: media.title,
       src: media.poster_path ? posterPath + media.poster_path : placeholder,
-      alt: media.title,
+      alt: media.title + "Poster",
       media_type: media.media_type,
     })) || [];
 
@@ -20,7 +20,7 @@ const usePersonCredits = (personId: string) => {
       id: media.id,
       name: media.title,
       src: media.poster_path ? posterPath + media.poster_path : placeholder,
-      alt: media.title,
+      alt: media.title + "Poster",
       media_type: media.media_type,
     })) || [];
 

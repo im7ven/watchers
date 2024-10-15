@@ -41,7 +41,6 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
     return <p>loading...</p>;
   }
 
-  console.log(crewSlides);
   return (
     <main className="p-4">
       <Container size="2">

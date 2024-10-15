@@ -51,7 +51,6 @@ export default function Home() {
   const fetchedMediaCount =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
 
-  console.log(selectedTab);
   return (
     <main>
       <Flex justify="between" align="center">

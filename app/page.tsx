@@ -29,8 +29,10 @@ const posterUrl = `https://image.tmdb.org/t/p/w500`;
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState("/movie/popular");
   const [isMovieSelected, setIsMovieSelected] = useState("movie");
-  const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } =
-    useData<MediaCover>(selectedTab, [selectedTab]);
+  const { data, isLoading, fetchNextPage, hasNextPage } = useData<MediaCover>(
+    selectedTab,
+    [selectedTab]
+  );
 
   const onSelectMovie = () => {
     setIsMovieSelected("movie");
@@ -39,7 +41,7 @@ export default function Home() {
 
   const onSelectTv = () => {
     setIsMovieSelected("tv");
-    setSelectedTab("/tv/popular");
+    setSelectedTab("/trending/tv/week");
   };
 
   if (isLoading) {
@@ -75,7 +77,6 @@ export default function Home() {
         {isMovieSelected === "movie" && (
           <Tabs.Root
             value={selectedTab}
-            // defaultValue={"/movie/popular"}
             onValueChange={(value) => setSelectedTab(value)}
           >
             <Tabs.List
@@ -93,7 +94,6 @@ export default function Home() {
         )}
         {isMovieSelected === "tv" && (
           <Tabs.Root
-            // defaultValue={"/tv/popular"}
             value={selectedTab}
             onValueChange={(value) => setSelectedTab(value)}
           >
@@ -102,8 +102,8 @@ export default function Home() {
               className="items-center"
               justify="center"
             >
-              <Tabs.Trigger value="/tv/popular">Popular</Tabs.Trigger>
               <Tabs.Trigger value="/trending/tv/week">Trending</Tabs.Trigger>
+              <Tabs.Trigger value="/tv/popular">Popular</Tabs.Trigger>
               <Tabs.Trigger value="/tv/top_rated">Top Rated</Tabs.Trigger>
             </Tabs.List>
           </Tabs.Root>

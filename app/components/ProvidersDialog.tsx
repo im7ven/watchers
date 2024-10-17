@@ -1,7 +1,15 @@
-import { Box, Callout, Dialog, Flex, Heading, Text } from "@radix-ui/themes";
+import {
+  Box,
+  Button,
+  Callout,
+  Dialog,
+  Flex,
+  Heading,
+  Text,
+} from "@radix-ui/themes";
 import Image from "next/image";
 import { BsInfoCircleFill } from "react-icons/bs";
-import { CiPlay1 } from "react-icons/ci";
+import { FaPlay } from "react-icons/fa";
 import { MediaDetail } from "../hooks/useMediaDetails";
 Image;
 
@@ -21,10 +29,10 @@ const ProvidersDialog = ({ media }: Props) => {
     <Box mt="4">
       <Dialog.Root>
         <Dialog.Trigger>
-          <button className=" flex gap-1 items-center text-[#efc332] font-extrabold underline">
-            <CiPlay1 size="20px" />
+          <Button className="items-center text-[#efc332] font-extrabold underline">
+            <FaPlay size="15px" />
             Where to Watch
-          </button>
+          </Button>
         </Dialog.Trigger>
         <Dialog.Content maxWidth="450px" aria-describedby={undefined}>
           <Dialog.Title>Where to Watch</Dialog.Title>

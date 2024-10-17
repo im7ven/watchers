@@ -2,6 +2,7 @@
 
 import EmblaCarousel from "@/app/components/EmblaCarousel";
 import MovieDataList from "@/app/components/MovieDataList";
+import ProvidersDialog from "@/app/components/ProvidersDialog";
 import VideoPlayer from "@/app/components/VideoPlayer";
 import useMediaCredits from "@/app/hooks/useMediaCredits";
 import useMediaDetails from "@/app/hooks/useMediaDetails";
@@ -17,6 +18,7 @@ import {
 import Image from "next/image";
 import React from "react";
 import { CiHeart } from "react-icons/ci";
+import { MdFavorite } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import { TbPointFilled } from "react-icons/tb";
 
@@ -57,10 +59,7 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
               <Heading as="h1" weight="light">
                 {tvSeries?.name}
               </Heading>
-              <Button style={{ gap: "4px" }}>
-                <CiHeart color="#fff" size="20" />
-                <span className="hidden md:block">Add to Queue</span>
-              </Button>
+              <MdFavorite size="25" color="#FF8A95" />
             </Flex>
 
             <Flex className="mt-2" align="center" gap="1">
@@ -83,6 +82,9 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
                 </Badge>
               ))}
             </Flex>
+            {tvSeries?.["watch/providers"].results.US && (
+              <ProvidersDialog media={tvSeries} />
+            )}
           </Box>
         </Flex>
 

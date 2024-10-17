@@ -16,8 +16,8 @@ import {
   Text,
 } from "@radix-ui/themes";
 import Image from "next/image";
-import { CiHeart } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
+import { MdFavorite } from "react-icons/md";
 import { TbPointFilled } from "react-icons/tb";
 
 type Props = {
@@ -56,7 +56,7 @@ const MoviePage = ({ params: { movieId } }: Props) => {
               <Heading as="h1" weight="light">
                 {movie?.title}
               </Heading>
-              <CiHeart color="#FF92B1" size="35px" />
+              <MdFavorite size="25" color="#FF8A95" />
             </Flex>
 
             <Flex className="mt-2" align="center" gap="1">
@@ -74,7 +74,9 @@ const MoviePage = ({ params: { movieId } }: Props) => {
                 </Badge>
               ))}
             </Flex>
-            {movie && <ProvidersDialog media={movie} />}
+            {movie?.["watch/providers"].results.US && (
+              <ProvidersDialog media={movie} />
+            )}
           </Box>
         </Flex>
 

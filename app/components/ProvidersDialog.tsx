@@ -26,7 +26,7 @@ const ProvidersDialog = ({ media }: Props) => {
             Where to Watch
           </button>
         </Dialog.Trigger>
-        <Dialog.Content maxWidth="450px">
+        <Dialog.Content maxWidth="450px" aria-describedby={undefined}>
           <Dialog.Title>Where to Watch</Dialog.Title>
 
           <Heading size="2" className="uppercase">

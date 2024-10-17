@@ -5,6 +5,7 @@ import {
   Dialog,
   Flex,
   Heading,
+  Separator,
   Text,
 } from "@radix-ui/themes";
 import Image from "next/image";
@@ -64,7 +65,9 @@ const ProvidersDialog = ({ media }: Props) => {
               </Callout.Root>
             )}
           </Flex>
-          <Heading mt="3" size="2" className="uppercase">
+          <Separator my="3" size="4" />
+
+          <Heading size="2" className="uppercase">
             Rent:
           </Heading>
           <Flex mt="3" direction="column" gap="2">

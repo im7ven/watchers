@@ -15,6 +15,8 @@ const ProvidersDialog = ({ media }: Props) => {
   const streamProviders = media["watch/providers"].results.US.flatrate;
   const rentProviders = media["watch/providers"].results.US.rent;
 
+  console.log(media["watch/providers"]);
+
   return (
     <Box mt="4">
       <Dialog.Root>
@@ -32,21 +34,17 @@ const ProvidersDialog = ({ media }: Props) => {
           </Heading>
           <Flex mt="3" direction="column" gap="2">
             {streamProviders ? (
-              streamProviders?.length < 1 ? (
-                "Not Available"
-              ) : (
-                streamProviders?.map((provider) => (
-                  <Flex align="center" gap="3" key={provider.provider_id}>
-                    <Image
-                      src={logoPath + provider.logo_path}
-                      height={50}
-                      width={50}
-                      alt={provider.provider_name + "logo"}
-                    />
-                    <Text>{provider.provider_name}</Text>
-                  </Flex>
-                ))
-              )
+              streamProviders?.map((provider) => (
+                <Flex align="center" gap="3" key={provider.provider_id}>
+                  <Image
+                    src={logoPath + provider.logo_path}
+                    height={50}
+                    width={50}
+                    alt={provider.provider_name + "logo"}
+                  />
+                  <Text>{provider.provider_name}</Text>
+                </Flex>
+              ))
             ) : (
               <Callout.Root>
                 <Callout.Icon>
@@ -63,21 +61,17 @@ const ProvidersDialog = ({ media }: Props) => {
           </Heading>
           <Flex mt="3" direction="column" gap="2">
             {rentProviders ? (
-              rentProviders?.length < 1 ? (
-                "Not Available"
-              ) : (
-                rentProviders?.map((provider) => (
-                  <Flex align="center" gap="3" key={provider.provider_id}>
-                    <Image
-                      src={logoPath + provider.logo_path}
-                      height={50}
-                      width={50}
-                      alt={provider.provider_name + "logo"}
-                    />
-                    <Text>{provider.provider_name}</Text>
-                  </Flex>
-                ))
-              )
+              rentProviders?.map((provider) => (
+                <Flex align="center" gap="3" key={provider.provider_id}>
+                  <Image
+                    src={logoPath + provider.logo_path}
+                    height={50}
+                    width={50}
+                    alt={provider.provider_name + "logo"}
+                  />
+                  <Text>{provider.provider_name}</Text>
+                </Flex>
+              ))
             ) : (
               <Callout.Root>
                 <Callout.Icon>

@@ -6,6 +6,7 @@ import {
   Heading,
   Select,
   Separator,
+  Strong,
   Text,
 } from "@radix-ui/themes";
 import Image from "next/image";
@@ -39,14 +40,16 @@ const ProvidersDialog = ({ media }: Props) => {
         </Dialog.Trigger>
         <Dialog.Content maxWidth="450px" aria-describedby={undefined}>
           <Flex mb="5" align="center" justify="between">
-            <Dialog.Title trim="both" mb="0" size="6">
-              Where to Watch
+            <Dialog.Title trim="both" mb="0" size={{ initial: "5", sm: "6" }}>
+              Providers
             </Dialog.Title>
             <Select.Root
               value={providerCountry}
               onValueChange={(value) => setProviderCountry(value)}
             >
-              <Select.Trigger>{providerCountry}</Select.Trigger>
+              <Select.Trigger>
+                Select Country - <Strong>{providerCountry}</Strong>
+              </Select.Trigger>
               <Select.Content>
                 <Select.Item value="CA">Canada</Select.Item>
                 <Select.Item value="US">United States</Select.Item>

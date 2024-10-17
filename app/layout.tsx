@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "./auth/Provider";
-import { Container, Theme, ThemePanel } from "@radix-ui/themes";
+import { Container, Theme } from "@radix-ui/themes";
 import QueryClientProvider from "./QueryClientProvider";
 import Navbar from "./components/Navbar";
 import { SearchContextProvider } from "./contexts/SearchContext";
@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <QueryClientProvider>
           <AuthProvider>
-            <Theme appearance="dark" accentColor="jade" grayColor="sage">
+            <Theme appearance="dark" accentColor="amber" grayColor="sage">
               <Container maxWidth="1000px">
                 <SearchContextProvider>
                   <Navbar />

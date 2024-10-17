@@ -58,6 +58,23 @@ type SimilarMedia = {
   results: Media[];
 };
 
+type Provider = {
+  logo_path: string;
+  provider_id: string;
+  provider_name: string;
+};
+
+type WatchProviderResults = {
+  rent: Provider[];
+  flatrate: Provider[];
+};
+
+type WatchProviders = {
+  results: {
+    US: WatchProviderResults;
+  };
+};
+
 export type MediaDetail = {
   id: number;
   title: string;
@@ -79,6 +96,7 @@ export type MediaDetail = {
   content_ratings: ContentRating;
   status: string;
   similar: SimilarMedia;
+  "watch/providers": WatchProviders;
 };
 
 const fetchMediaDetails = async (mediaId: string, mediaType: string) => {
@@ -87,7 +105,7 @@ const fetchMediaDetails = async (mediaId: string, mediaType: string) => {
       `/${mediaType}/${mediaId}`,
       {
         params: {
-          append_to_response: "credits,videos,similar",
+          append_to_response: "credits,videos,similar,watch/providers",
         },
       }
     );

@@ -71,7 +71,7 @@ type WatchProviderResults = {
 
 type WatchProviders = {
   results: {
-    US: WatchProviderResults;
+    [countryCode: string]: WatchProviderResults;
   };
 };
 

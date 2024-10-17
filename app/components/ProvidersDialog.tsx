@@ -1,17 +1,18 @@
 import {
   Box,
   Button,
-  Callout,
   Dialog,
   Flex,
   Heading,
+  Select,
   Separator,
   Text,
 } from "@radix-ui/themes";
 import Image from "next/image";
-import { BsInfoCircleFill } from "react-icons/bs";
+import { useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import { MediaDetail } from "../hooks/useMediaDetails";
+import ProviderAlert from "./ProviderAlert";
 Image;
 
 type Props = {
@@ -21,10 +22,11 @@ type Props = {
 const logoPath = "https://image.tmdb.org/t/p/w200";
 
 const ProvidersDialog = ({ media }: Props) => {
-  const streamProviders = media["watch/providers"].results.US.flatrate;
-  const rentProviders = media["watch/providers"].results.US.rent;
+  const [providerCountry, setProviderCountry] = useState("CA");
 
-  console.log(media["watch/providers"]);
+  const streamProviders =
+    media["watch/providers"].results[providerCountry]?.flatrate;
+  const rentProviders = media["watch/providers"].results[providerCountry]?.rent;
 
   return (
     <Box mt="4">
@@ -36,7 +38,26 @@ const ProvidersDialog = ({ media }: Props) => {
           </Button>
         </Dialog.Trigger>
         <Dialog.Content maxWidth="450px" aria-describedby={undefined}>
-          <Dialog.Title>Where to Watch</Dialog.Title>
+          <Flex mb="5" align="center" justify="between">
+            <Dialog.Title trim="both" mb="0" size="6">
+              Where to Watch
+            </Dialog.Title>
+            <Select.Root
+              value={providerCountry}
+              onValueChange={(value) => setProviderCountry(value)}
+            >
+              <Select.Trigger>{providerCountry}</Select.Trigger>
+              <Select.Content>
+                <Select.Item value="CA">Canada</Select.Item>
+                <Select.Item value="US">United States</Select.Item>
+                <Select.Item value="GB">United Kingdom</Select.Item>
+                <Select.Item value="DE">Germany</Select.Item>
+                <Select.Item value="FR">France</Select.Item>
+                <Select.Item value="IN">India</Select.Item>
+                <Select.Item value="BR">Brazil</Select.Item>
+              </Select.Content>
+            </Select.Root>
+          </Flex>
 
           <Heading size="2" className="uppercase">
             Stream:
@@ -55,14 +76,7 @@ const ProvidersDialog = ({ media }: Props) => {
                 </Flex>
               ))
             ) : (
-              <Callout.Root>
-                <Callout.Icon>
-                  <BsInfoCircleFill />
-                </Callout.Icon>
-                <Callout.Text>
-                  Currently not available for streaming in your region
-                </Callout.Text>
-              </Callout.Root>
+              <ProviderAlert watchMethod="streaming" />
             )}
           </Flex>
           <Separator my="3" size="4" />
@@ -84,14 +98,7 @@ const ProvidersDialog = ({ media }: Props) => {
                 </Flex>
               ))
             ) : (
-              <Callout.Root>
-                <Callout.Icon>
-                  <BsInfoCircleFill />
-                </Callout.Icon>
-                <Callout.Text>
-                  Currently not available for renting in your region
-                </Callout.Text>
-              </Callout.Root>
+              <ProviderAlert watchMethod="renting" />
             )}
           </Flex>
         </Dialog.Content>

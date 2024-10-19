@@ -9,6 +9,7 @@ import placeholder from "@/public/headshot-placeholder.png";
 import EmblaCarousel from "@/app/components/EmblaCarousel";
 import usePersonCredits from "@/app/hooks/usePersonCredits";
 import DetailPageSkeleton from "@/app/components/DetailPageSkeleton";
+import ImageModal from "@/app/components/ImageModal";
 
 type Props = {
   params: { personId: string };
@@ -24,20 +25,14 @@ const PersonDetailsPage = ({ params: { personId } }: Props) => {
     return <DetailPageSkeleton />;
   }
 
+  const personImage = person?.profile_path
+    ? posterPath + person?.profile_path
+    : placeholder;
+
   return (
     <Box p="4">
       <Flex gap="3" align="start">
-        <Image
-          src={
-            person?.profile_path
-              ? posterPath + person?.profile_path
-              : placeholder
-          }
-          width={100}
-          height={100}
-          className="md:w-[150px]"
-          alt={person?.name || "Actor"}
-        />
+        <ImageModal imgSrc={personImage} alt={person?.name + "headshot"} />
         <Box>
           <Heading>{person?.name}</Heading>
           <Flex align="center" gap="1">

@@ -21,6 +21,8 @@ import { CiHeart } from "react-icons/ci";
 import { MdFavorite } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import { TbPointFilled } from "react-icons/tb";
+import mediaPlaceholder from "@/public/movie_placeholder.png";
+import ImageModal from "@/app/components/ImageModal";
 
 type Props = {
   params: { tvId: string };
@@ -43,17 +45,15 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
     return <p>loading...</p>;
   }
 
+  const imagePoster = tvSeries?.poster_path
+    ? posterUrl + tvSeries.poster_path
+    : mediaPlaceholder;
+
   return (
     <main className="p-4">
       <Container size="2">
         <Flex gap="3">
-          <Image
-            className="rounded md:w-[150px]"
-            width={100}
-            height={100}
-            alt={`${tvSeries?.name} poster`}
-            src={`${posterUrl}${tvSeries?.poster_path}`}
-          />
+          <ImageModal imgSrc={imagePoster} alt={tvSeries?.name + "Poster"} />
           <Box flexGrow="1">
             <Flex gap="2" justify="between">
               <Heading as="h1" weight="light">

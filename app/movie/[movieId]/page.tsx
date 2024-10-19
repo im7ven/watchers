@@ -1,6 +1,7 @@
 "use client";
 
 import EmblaCarousel from "@/app/components/EmblaCarousel";
+import ImageModal from "@/app/components/ImageModal";
 import MovieDataList from "@/app/components/MovieDataList";
 import ProvidersDialog from "@/app/components/ProvidersDialog";
 import VideoPlayer from "@/app/components/VideoPlayer";
@@ -19,6 +20,7 @@ import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 import { TbPointFilled } from "react-icons/tb";
+import moviePlaceholder from "@/public/movie_placeholder.png";
 
 type Props = {
   params: { movieId: string };
@@ -40,17 +42,15 @@ const MoviePage = ({ params: { movieId } }: Props) => {
     (movie) => movie.type === "Trailer"
   );
 
+  const imagePoster = movie?.poster_path
+    ? mediaImgPath + movie.poster_path
+    : moviePlaceholder;
+
   return (
     <main className="p-4">
       <Container size="2">
         <Flex gap="3">
-          <Image
-            className="rounded md:w-[150px]"
-            width={100}
-            height={100}
-            alt={`${movie?.title} poster`}
-            src={`${mediaImgPath}${movie?.poster_path}`}
-          />
+          <ImageModal alt={`${movie?.title} poster`} imgSrc={imagePoster} />
           <Box flexGrow="1">
             <Flex gap="2" justify="between">
               <Heading as="h1" weight="light">

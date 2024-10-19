@@ -10,12 +10,14 @@ const UserDropDown = ({ session }: Props) => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
-        <Avatar
-          radius="full"
-          src={session?.user?.image!}
-          fallback
-          referrerPolicy="no-referrer"
-        />
+        <span>
+          <Avatar
+            radius="full"
+            src={session?.user?.image!}
+            fallback
+            referrerPolicy="no-referrer"
+          />
+        </span>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
         <DropdownMenu.Item>{session?.user?.name}</DropdownMenu.Item>

@@ -1,17 +1,15 @@
 "use client";
-import { Button, Flex, TextField, Text, Heading } from "@radix-ui/themes";
-import { useSession } from "next-auth/react";
-import Link from "next/link";
-import { BsSearch } from "react-icons/bs";
-import UserDropDown from "./UserDropDown";
-import React, { useEffect, useRef, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { useSearchValue } from "../contexts/SearchContext";
 import logo from "@/public/logo.png";
+import { Flex, Heading, Text, TextField } from "@radix-ui/themes";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useRef, useState } from "react";
+import { BsSearch } from "react-icons/bs";
+import { useSearchValue } from "../contexts/SearchContext";
+import Menu from "./Menu";
 
 const Navbar = () => {
-  const { data: sessionData, status } = useSession();
   const router = useRouter();
   const currentPath = usePathname();
   const { searchVal, setSearchVal } = useSearchValue();
@@ -45,7 +43,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="border-b border-[rgba(255,255,255,.2)] py-3 px-3">
+    <header className="border-b border-[rgba(255,255,255,.2)] py-3 px-3 lg:px-0">
       <nav>
         <Flex justify="between" align="center" gap="5">
           <Link href="/" className="flex items-center gap-2 md:mr-5">
@@ -69,13 +67,7 @@ const Navbar = () => {
             </TextField.Root>
             {isInvalid && <Text color="red">Please provide a value</Text>}
           </form>
-          {status === "authenticated" ? (
-            <UserDropDown session={sessionData} />
-          ) : (
-            <Link href="/api/auth/signin">
-              <Button>Login</Button>
-            </Link>
-          )}
+          <Menu />
         </Flex>
       </nav>
     </header>

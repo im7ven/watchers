@@ -49,8 +49,7 @@ const Navbar = () => {
           <Link href="/" className="flex items-center gap-2 md:mr-5">
             <Image className="w-9" src={logo} alt="Logo image" />
             <Heading className="hidden md:block">
-              <span className="text-[#ffc53d]">S</span>tream
-              <span className="text-[#ffc53d]">Q</span>ueue
+              <span className="text-[#ffc53d]">W</span>atchers
             </Heading>
           </Link>
           <form onSubmit={handleSubmit}>

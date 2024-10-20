@@ -21,6 +21,7 @@ import { FaStar } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 import { TbPointFilled } from "react-icons/tb";
 import moviePlaceholder from "@/public/movie_placeholder.png";
+import DetailPageSkeleton from "@/app/components/DetailPageSkeleton";
 
 type Props = {
   params: { movieId: string };
@@ -36,7 +37,7 @@ const MoviePage = ({ params: { movieId } }: Props) => {
   );
 
   if (isLoading) {
-    return <Skeleton />;
+    return <DetailPageSkeleton />;
   }
   const videoTrailer = movie?.videos.results.find(
     (movie) => movie.type === "Trailer"

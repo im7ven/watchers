@@ -23,6 +23,7 @@ import { FaStar } from "react-icons/fa";
 import { TbPointFilled } from "react-icons/tb";
 import mediaPlaceholder from "@/public/movie_placeholder.png";
 import ImageModal from "@/app/components/ImageModal";
+import DetailPageSkeleton from "@/app/components/DetailPageSkeleton";
 
 type Props = {
   params: { tvId: string };
@@ -42,7 +43,7 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
   );
 
   if (isLoading) {
-    return <p>loading...</p>;
+    return <DetailPageSkeleton />;
   }
 
   const imagePoster = tvSeries?.poster_path

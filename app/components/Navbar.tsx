@@ -1,5 +1,5 @@
 "use client";
-import { Button, Flex, TextField, Text } from "@radix-ui/themes";
+import { Button, Flex, TextField, Text, Heading } from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { BsSearch } from "react-icons/bs";
@@ -7,6 +7,8 @@ import UserDropDown from "./UserDropDown";
 import React, { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useSearchValue } from "../contexts/SearchContext";
+import logo from "@/public/logo.png";
+import Image from "next/image";
 
 const Navbar = () => {
   const { data: sessionData, status } = useSession();
@@ -46,7 +48,13 @@ const Navbar = () => {
     <header className="border-b border-[rgba(255,255,255,.2)] py-3 px-3">
       <nav>
         <Flex justify="between" align="center" gap="5">
-          <Link href="/">LOGO</Link>
+          <Link href="/" className="flex items-center gap-2 md:mr-5">
+            <Image className="w-9" src={logo} alt="Logo image" />
+            <Heading className="hidden md:block">
+              <span className="text-[#ffc53d]">S</span>tream
+              <span className="text-[#ffc53d]">Q</span>ueue
+            </Heading>
+          </Link>
           <form onSubmit={handleSubmit}>
             <TextField.Root
               onBlur={handleResetValidation}

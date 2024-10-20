@@ -10,6 +10,7 @@ import {
   Container,
   Button,
   Spinner,
+  SegmentedControl,
 } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -54,25 +55,19 @@ export default function Home() {
   return (
     <main>
       <Flex justify="between" align="center">
-        <Flex className="flex-1 text-[rgba(255,255,255,.5)]" gap="2">
-          <Text
-            onClick={onSelectMovie}
-            className={`cursor-pointer ${
-              isMovieSelected === "movie" ? "font-semibold text-white" : ""
-            }`}
-          >
+        <SegmentedControl.Root
+          radius="full"
+          size="1"
+          defaultValue={isMovieSelected}
+        >
+          <SegmentedControl.Item onClick={onSelectMovie} value="movie">
             Movie
-          </Text>
-          |
-          <Text
-            onClick={onSelectTv}
-            className={` cursor-pointer ${
-              isMovieSelected === "tv" ? "font-semibold text-white" : ""
-            }`}
-          >
+          </SegmentedControl.Item>
+          <SegmentedControl.Item onClick={onSelectTv} value="tv">
             TV
-          </Text>
-        </Flex>
+          </SegmentedControl.Item>
+        </SegmentedControl.Root>
+
         {isMovieSelected === "movie" && (
           <Tabs.Root
             value={selectedTab}

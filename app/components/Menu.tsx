@@ -22,7 +22,7 @@ const Menu = () => {
       </DropdownMenu.Trigger>
       <DropdownMenu.Content>
         {status === "authenticated" && (
-          <DropdownMenu.Item className="flex my-4">
+          <DropdownMenu.Item className="flex my-4 tex hover:bg-[#171918] hover:text-[rgba(255,255,255,0.9)]">
             <Avatar
               size="4"
               radius="full"
@@ -43,17 +43,17 @@ const Menu = () => {
         <DropdownMenu.Item>Genres</DropdownMenu.Item>
         <DropdownMenu.Separator />
         <DropdownMenu.Item
-          className="flex-1 flex-grow items-center"
+          className="hover:bg-transparent"
           style={{ flexGrow: 1, justifyContent: "center", width: "100%" }}
         >
           {status === "unauthenticated" ? (
-            <Button style={{ flexGrow: 1 }}>
-              <Link href="/api/auth/signin">Login</Link>
-            </Button>
+            <Link href="/api/auth/signin">
+              <Button style={{ width: "100%" }}>Login</Button>
+            </Link>
           ) : (
-            <Button style={{ flexGrow: 1 }}>
-              <Link href="/api/auth/signout">Logout</Link>
-            </Button>
+            <Link className="w-full" href="/api/auth/signout">
+              <Button style={{ width: "100%" }}>Logout</Button>
+            </Link>
           )}
         </DropdownMenu.Item>
       </DropdownMenu.Content>

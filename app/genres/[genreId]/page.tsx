@@ -44,7 +44,7 @@ const MovieGenrePage = ({ params: { genreId } }: Props) => {
             <React.Fragment key={index}>
               {page?.results.map((movie) => (
                 <Box key={movie.id}>
-                  <Link href={`movie/${movie.id}`}>
+                  <Link href={`/movie/${movie.id}`}>
                     <Image
                       width={165}
                       height={300}

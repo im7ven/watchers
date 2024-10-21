@@ -7,7 +7,11 @@ type MediaResponse<T> = {
   total_pages: number;
 };
 
-const useData = <T,>(endpoint: string, key: string[]) => {
+const useData = <T,>(
+  endpoint: string,
+  key: string[],
+  queryParams?: Record<string, any>
+) => {
   return useInfiniteQuery({
     queryKey: key,
     queryFn: async ({ pageParam = 1 }) => {
@@ -15,6 +19,7 @@ const useData = <T,>(endpoint: string, key: string[]) => {
         const { data } = await apiClient.get<MediaResponse<T>>(endpoint, {
           params: {
             page: pageParam,
+            ...queryParams,
           },
         });
         return data;

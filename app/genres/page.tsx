@@ -2,7 +2,11 @@
 
 import React from "react";
 import useGenres from "../hooks/useGenres";
-import { Spinner } from "@radix-ui/themes";
+import { Box, Flex, Grid, Spinner, Text } from "@radix-ui/themes";
+import Image from "next/image";
+import sonicImg from "@/public/sonicCover.png";
+import genres from "../data/genres";
+import Link from "next/link";
 
 const GenrePage = () => {
   const { data, isLoading, isError } = useGenres();
@@ -16,13 +20,25 @@ const GenrePage = () => {
   }
 
   return (
-    <ul className="mx-auto text-center max-w-[80%] sm:max-w-xs">
-      {data?.genres.map((genre) => (
-        <li className="border-b border-gray-400 py-3" key={genre.id}>
-          {genre.name}
-        </li>
+    <Grid p="4" gap="2" columns={{ initial: "2", xs: "3", sm: "5" }}>
+      {genres.map((genre) => (
+        <Link key={genre.id} href={`/genres/${genre.id}`}>
+          <Flex
+            align="center"
+            justify="center"
+            className="p-2 max-w-[250px] h-[240px] relative border-[rgba(255,255,255,.2)] border rounded-lg"
+          >
+            <Image
+              className="object-cover opacity-20  absolute inset-0 -z-10"
+              src={genre.image!}
+              alt="Sonic movie cover"
+              fill
+            />
+            <Text weight={"bold"}>{genre.name}</Text>
+          </Flex>
+        </Link>
       ))}
-    </ul>
+    </Grid>
   );
 };
 

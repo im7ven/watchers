@@ -42,11 +42,11 @@ const Menu = () => {
         <DropdownMenu.Item>Reviews</DropdownMenu.Item>
 
         <DropdownMenu.Separator />
-        <DropdownMenu.Item onSelect={() => setOpen(false)}>
-          <Link onClick={() => setOpen(false)} href="/genres">
+        <Link href="/genres">
+          <DropdownMenu.Item onSelect={() => setOpen(false)}>
             Genres
-          </Link>
-        </DropdownMenu.Item>
+          </DropdownMenu.Item>
+        </Link>
         <DropdownMenu.Separator />
         <DropdownMenu.Item
           className="hover:bg-transparent"

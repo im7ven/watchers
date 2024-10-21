@@ -22,14 +22,18 @@ const GenrePage = () => {
   return (
     <Grid p="4" gap="2" columns={{ initial: "2", xs: "3", sm: "5" }}>
       {genres.map((genre) => (
-        <Link key={genre.id} href={`/genres/${genre.id}`}>
+        <Link
+          className="hover:border-amber-500 hover:border border-[rgba(255,255,255,.2)] border rounded-lg "
+          key={genre.id}
+          href={`/genres/${genre.id}`}
+        >
           <Flex
             align="center"
             justify="center"
-            className="p-2 max-w-[250px] h-[240px] relative border-[rgba(255,255,255,.2)] border rounded-lg"
+            className="p-2 max-w-[250px] h-[240px] relative  "
           >
             <Image
-              className="object-cover opacity-20  absolute inset-0 -z-10"
+              className="object-cover opacity-20 absolute inset-0 -z-10"
               src={genre.image!}
               alt="Sonic movie cover"
               fill

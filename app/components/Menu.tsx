@@ -8,13 +8,15 @@ import {
 } from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useState } from "react";
 import { IoMenu } from "react-icons/io5";
 
 const Menu = () => {
   const { data: sessionData, status } = useSession();
+  const [open, setOpen] = useState(false);
 
   return (
-    <DropdownMenu.Root>
+    <DropdownMenu.Root open={open} onOpenChange={setOpen}>
       <DropdownMenu.Trigger>
         <span>
           <IoMenu size="30" />
@@ -40,8 +42,10 @@ const Menu = () => {
         <DropdownMenu.Item>Reviews</DropdownMenu.Item>
 
         <DropdownMenu.Separator />
-        <DropdownMenu.Item>
-          <Link href="/genres">Genres</Link>
+        <DropdownMenu.Item onSelect={() => setOpen(false)}>
+          <Link onClick={() => setOpen(false)} href="/genres">
+            Genres
+          </Link>
         </DropdownMenu.Item>
         <DropdownMenu.Separator />
         <DropdownMenu.Item

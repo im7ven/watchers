@@ -40,7 +40,9 @@ const Menu = () => {
         <DropdownMenu.Item>Reviews</DropdownMenu.Item>
 
         <DropdownMenu.Separator />
-        <DropdownMenu.Item>Genres</DropdownMenu.Item>
+        <DropdownMenu.Item>
+          <Link href="/genres">Genres</Link>
+        </DropdownMenu.Item>
         <DropdownMenu.Separator />
         <DropdownMenu.Item
           className="hover:bg-transparent"

@@ -4,20 +4,16 @@ import {
   Box,
   Flex,
   Grid,
-  Skeleton,
-  Tabs,
-  Text,
-  Container,
-  Button,
-  Spinner,
   SegmentedControl,
+  Spinner,
+  Tabs,
 } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import useData from "./hooks/useData";
-import GridSkeleton from "./components/GridSkeleton";
+import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import GridSkeleton from "./components/GridSkeleton";
+import useData from "./hooks/useData";
 
 type MediaCover = {
   id: number;

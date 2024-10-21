@@ -1,11 +1,13 @@
 "use client";
 
+import DetailPageSkeleton from "@/app/components/DetailPageSkeleton";
 import EmblaCarousel from "@/app/components/EmblaCarousel";
-import MovieDataList from "@/app/components/MovieDataList";
+import ImageModal from "@/app/components/ImageModal";
 import ProvidersDialog from "@/app/components/ProvidersDialog";
 import VideoPlayer from "@/app/components/VideoPlayer";
 import useMediaCredits from "@/app/hooks/useMediaCredits";
 import useMediaDetails from "@/app/hooks/useMediaDetails";
+import mediaPlaceholder from "@/public/movie_placeholder.png";
 import {
   Badge,
   Box,
@@ -15,15 +17,11 @@ import {
   Heading,
   Text,
 } from "@radix-ui/themes";
-import Image from "next/image";
-import React from "react";
-import { CiHeart } from "react-icons/ci";
-import { MdFavorite } from "react-icons/md";
+import { useRouter } from "next/navigation";
 import { FaStar } from "react-icons/fa";
+import { IoReturnUpBackOutline } from "react-icons/io5";
+import { MdFavorite } from "react-icons/md";
 import { TbPointFilled } from "react-icons/tb";
-import mediaPlaceholder from "@/public/movie_placeholder.png";
-import ImageModal from "@/app/components/ImageModal";
-import DetailPageSkeleton from "@/app/components/DetailPageSkeleton";
 
 type Props = {
   params: { tvId: string };
@@ -37,6 +35,12 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
     tvId,
     "tv"
   );
+
+  const router = useRouter();
+
+  const handleGoBack = () => {
+    router.back();
+  };
 
   const videoTrailer = tvSeries?.videos?.results?.find(
     (tv) => tv.type === "Trailer"
@@ -52,6 +56,10 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
 
   return (
     <main className="p-4">
+      <Button size="1" variant="outline" onClick={handleGoBack} mb="3">
+        <IoReturnUpBackOutline size="20" />
+        Go Back
+      </Button>
       <Container size="2">
         <Flex gap="3">
           <ImageModal imgSrc={imagePoster} alt={tvSeries?.name + "Poster"} />

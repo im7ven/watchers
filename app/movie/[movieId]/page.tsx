@@ -1,5 +1,6 @@
 "use client";
 
+import DetailPageSkeleton from "@/app/components/DetailPageSkeleton";
 import EmblaCarousel from "@/app/components/EmblaCarousel";
 import ImageModal from "@/app/components/ImageModal";
 import MovieDataList from "@/app/components/MovieDataList";
@@ -7,21 +8,21 @@ import ProvidersDialog from "@/app/components/ProvidersDialog";
 import VideoPlayer from "@/app/components/VideoPlayer";
 import useMediaCredits from "@/app/hooks/useMediaCredits";
 import useMediaDetails from "@/app/hooks/useMediaDetails";
+import moviePlaceholder from "@/public/movie_placeholder.png";
 import {
   Badge,
   Box,
+  Button,
   Container,
   Flex,
   Heading,
-  Skeleton,
   Text,
 } from "@radix-ui/themes";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { IoReturnUpBackOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 import { TbPointFilled } from "react-icons/tb";
-import moviePlaceholder from "@/public/movie_placeholder.png";
-import DetailPageSkeleton from "@/app/components/DetailPageSkeleton";
 
 type Props = {
   params: { movieId: string };
@@ -36,9 +37,15 @@ const MoviePage = ({ params: { movieId } }: Props) => {
     "movie"
   );
 
+  const router = useRouter();
+  const handleGoBack = () => {
+    router.back();
+  };
+
   if (isLoading) {
     return <DetailPageSkeleton />;
   }
+
   const videoTrailer = movie?.videos.results.find(
     (movie) => movie.type === "Trailer"
   );
@@ -49,6 +56,11 @@ const MoviePage = ({ params: { movieId } }: Props) => {
 
   return (
     <main className="p-4">
+      <Button size="1" variant="outline" onClick={handleGoBack} mb="3">
+        <IoReturnUpBackOutline size="20" />
+        Go Back
+      </Button>
+
       <Container size="2">
         <Flex gap="3">
           <ImageModal alt={`${movie?.title} poster`} imgSrc={imagePoster} />

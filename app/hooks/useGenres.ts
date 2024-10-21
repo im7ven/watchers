@@ -12,7 +12,7 @@ type GenreResponse = {
 
 const fetchGenres = async () => {
   try {
-    const { data } = await apiClient.get<GenreResponse>("/genre/movie/list");
+    const { data } = await apiClient.get<GenreResponse>("/genre/tv/list");
     return data;
   } catch (error) {
     throw new Error(

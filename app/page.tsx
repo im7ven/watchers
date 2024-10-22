@@ -10,7 +10,7 @@ import {
 } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import GridSkeleton from "./components/GridSkeleton";
 import useData from "./hooks/useData";
@@ -24,21 +24,49 @@ type MediaCover = {
 const posterUrl = `https://image.tmdb.org/t/p/w500`;
 
 export default function Home() {
-  const [selectedTab, setSelectedTab] = useState("/movie/popular");
-  const [isMovieSelected, setIsMovieSelected] = useState("movie");
+  const [selectedTab, setSelectedTab] = useState<string>("/movie/popular");
+  const [mediaType, setMediaType] = useState<string>("movie");
   const { data, isLoading, fetchNextPage, hasNextPage } = useData<MediaCover>(
     selectedTab,
     [selectedTab]
   );
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedTab = localStorage.getItem("tabSelected") || "/movie/popular";
+      const storedMediaType =
+        localStorage.getItem("mediaTypeSelected") || "movie";
+
+      setSelectedTab(storedTab);
+      setMediaType(storedMediaType);
+
+      // Store default values if none found
+      if (!localStorage.getItem("mediaTypeSelected")) {
+        localStorage.setItem("mediaTypeSelected", "movie");
+      }
+      if (!localStorage.getItem("tabSelected")) {
+        localStorage.setItem("tabSelected", "/movie/popular");
+      }
+    }
+  }, []);
+
   const onSelectMovie = () => {
-    setIsMovieSelected("movie");
+    localStorage.setItem("mediaTypeSelected", "movie");
+    localStorage.setItem("tabSelected", "/movie/popular");
+    setMediaType("movie");
     setSelectedTab("/movie/popular");
   };
 
   const onSelectTv = () => {
-    setIsMovieSelected("tv");
+    localStorage.setItem("mediaTypeSelected", "tv");
+    localStorage.setItem("tabSelected", "/trending/tv/week");
+    setMediaType("tv");
     setSelectedTab("/trending/tv/week");
+  };
+
+  const onChangeTab = (tabValue: string) => {
+    localStorage.setItem("tabSelected", tabValue);
+    setSelectedTab(tabValue);
   };
 
   if (isLoading) {
@@ -48,14 +76,13 @@ export default function Home() {
   const fetchedMediaCount =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
 
+  console.log("TAB", selectedTab);
+  console.log("MEDIA", mediaType);
+
   return (
     <main>
       <Flex justify="between" align="center">
-        <SegmentedControl.Root
-          radius="full"
-          size="1"
-          defaultValue={isMovieSelected}
-        >
+        <SegmentedControl.Root radius="full" size="1" value={mediaType}>
           <SegmentedControl.Item onClick={onSelectMovie} value="movie">
             Movie
           </SegmentedControl.Item>
@@ -64,10 +91,10 @@ export default function Home() {
           </SegmentedControl.Item>
         </SegmentedControl.Root>
 
-        {isMovieSelected === "movie" && (
+        {mediaType === "movie" && (
           <Tabs.Root
             value={selectedTab}
-            onValueChange={(value) => setSelectedTab(value)}
+            onValueChange={(value) => onChangeTab(value)}
           >
             <Tabs.List
               size={{ initial: "1", xs: "2" }}
@@ -82,10 +109,10 @@ export default function Home() {
             </Tabs.List>
           </Tabs.Root>
         )}
-        {isMovieSelected === "tv" && (
+        {mediaType === "tv" && (
           <Tabs.Root
             value={selectedTab}
-            onValueChange={(value) => setSelectedTab(value)}
+            onValueChange={(value) => onChangeTab(value)}
           >
             <Tabs.List
               size={{ initial: "1", xs: "2" }}
@@ -110,11 +137,7 @@ export default function Home() {
             <React.Fragment key={index}>
               {page?.results.map((movie) => (
                 <Box key={movie.id}>
-                  <Link
-                    href={`/${isMovieSelected === "movie" ? "movie" : "tv"}/${
-                      movie.id
-                    }`}
-                  >
+                  <Link href={`/${mediaType}/${movie.id}`}>
                     <Image
                       width={165}
                       height={300}

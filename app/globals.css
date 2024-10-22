@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth !important;
+}
+
 .embla {
   max-width: 100%; /* Adjust to fit your needs */
   margin: auto;
@@ -24,12 +28,6 @@
   flex: 0 0 var(--slide-size);
   min-width: 0;
   padding-left: var(--slide-spacing);
-}
-
-.embla__slide__image {
-  /* display: block; */
-  /* width: 100%; */
-  /* height: auto; */
 }
 
 form {

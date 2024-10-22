@@ -43,7 +43,7 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
     <main className="p-4">
       <BackButton />
       <Container size="2">
-        <Flex gap="3">
+        <Flex gap="2">
           <ImageModal imgSrc={imagePoster} alt={tvSeries?.name + "Poster"} />
           <Box flexGrow="1">
             <Flex gap="2" justify="between">

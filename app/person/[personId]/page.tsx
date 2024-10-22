@@ -33,7 +33,7 @@ const PersonDetailsPage = ({ params: { personId } }: Props) => {
   return (
     <Box p="4">
       <BackButton />
-      <Flex gap="3" align="start">
+      <Flex gap="2" align="start">
         <ImageModal imgSrc={personImage} alt={person?.name + "headshot"} />
         <Box>
           <Heading>{person?.name}</Heading>

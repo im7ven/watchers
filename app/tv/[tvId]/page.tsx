@@ -41,7 +41,9 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
 
   return (
     <main className="p-4">
-      <BackButton />
+      <Box pb={{ initial: "2" }}>
+        <BackButton />
+      </Box>
       <Container size="2">
         <Flex gap="2">
           <ImageModal imgSrc={imagePoster} alt={tvSeries?.name + "Poster"} />

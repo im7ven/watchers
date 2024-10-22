@@ -23,6 +23,7 @@ import { IoReturnUpBackOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 import { TbPointFilled } from "react-icons/tb";
+import BackButton from "@/app/components/BackButton";
 
 type Props = {
   params: { movieId: string };
@@ -56,11 +57,7 @@ const MoviePage = ({ params: { movieId } }: Props) => {
 
   return (
     <main className="p-4">
-      <Button size="1" variant="outline" onClick={handleGoBack} mb="3">
-        <IoReturnUpBackOutline size="20" />
-        Go Back
-      </Button>
-
+      <BackButton />
       <Container size="2">
         <Flex gap="3">
           <ImageModal alt={`${movie?.title} poster`} imgSrc={imagePoster} />

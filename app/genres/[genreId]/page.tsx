@@ -21,11 +21,13 @@ type Props = {
 const posterUrl = `https://image.tmdb.org/t/p/w500`;
 
 const MovieGenrePage = ({ params: { genreId } }: Props) => {
+  const decodedGenreId = decodeURIComponent(genreId);
+
   const { data, hasNextPage, fetchNextPage } = useData<MediaCover>(
     "/discover/movie",
     ["movie genre", genreId],
     {
-      with_genres: genreId,
+      with_genres: decodedGenreId,
     }
   );
 

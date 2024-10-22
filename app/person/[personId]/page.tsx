@@ -10,6 +10,7 @@ import EmblaCarousel from "@/app/components/EmblaCarousel";
 import usePersonCredits from "@/app/hooks/usePersonCredits";
 import DetailPageSkeleton from "@/app/components/DetailPageSkeleton";
 import ImageModal from "@/app/components/ImageModal";
+import BackButton from "@/app/components/BackButton";
 
 type Props = {
   params: { personId: string };
@@ -31,6 +32,7 @@ const PersonDetailsPage = ({ params: { personId } }: Props) => {
 
   return (
     <Box p="4">
+      <BackButton />
       <Flex gap="3" align="start">
         <ImageModal imgSrc={personImage} alt={person?.name + "headshot"} />
         <Box>

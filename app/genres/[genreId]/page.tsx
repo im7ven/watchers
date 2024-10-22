@@ -1,5 +1,6 @@
 "use client";
 
+import BackButton from "@/app/components/BackButton";
 import useData from "@/app/hooks/useData";
 import { Spinner, Grid, Box } from "@radix-ui/themes";
 import Image from "next/image";
@@ -32,7 +33,8 @@ const MovieGenrePage = ({ params: { genreId } }: Props) => {
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
 
   return (
-    <div>
+    <Box pt={{ initial: "1", sm: "3" }}>
+      <BackButton />
       <InfiniteScroll
         dataLength={fetchedMediaCount}
         hasMore={!!hasNextPage}
@@ -58,7 +60,7 @@ const MovieGenrePage = ({ params: { genreId } }: Props) => {
           ))}
         </Grid>
       </InfiniteScroll>
-    </div>
+    </Box>
   );
 };
 

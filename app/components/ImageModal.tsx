@@ -24,7 +24,7 @@ const ImageModal = ({ imgSrc, alt }: Props) => {
       <Dialog.Trigger>
         <Image
           className="rounded md:w-[150px]"
-          width={100}
+          width={120}
           height={100}
           src={imgSrc}
           alt={alt}

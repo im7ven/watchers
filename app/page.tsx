@@ -13,6 +13,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import GridSkeleton from "./components/GridSkeleton";
+import ScrollToTopBtn from "./components/ScrollToTopBtn";
 import useData from "./hooks/useData";
 
 type MediaCover = {
@@ -26,6 +27,7 @@ const posterUrl = `https://image.tmdb.org/t/p/w500`;
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState<string>("/movie/popular");
   const [mediaType, setMediaType] = useState<string>("movie");
+  const [scrollPosition, setScrollPosition] = useState(0);
   const { data, isLoading, fetchNextPage, hasNextPage } = useData<MediaCover>(
     selectedTab,
     [selectedTab]
@@ -40,7 +42,6 @@ export default function Home() {
       setSelectedTab(storedTab);
       setMediaType(storedMediaType);
 
-      // Store default values if none found
       if (!localStorage.getItem("mediaTypeSelected")) {
         localStorage.setItem("mediaTypeSelected", "movie");
       }
@@ -48,6 +49,18 @@ export default function Home() {
         localStorage.setItem("tabSelected", "/movie/popular");
       }
     }
+  }, []);
+
+  useEffect(() => {
+    const handleScrollPosition = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScrollPosition);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollPosition);
+    };
   }, []);
 
   const onSelectMovie = () => {
@@ -69,18 +82,16 @@ export default function Home() {
     setSelectedTab(tabValue);
   };
 
+  const fetchedMediaCount =
+    data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
+
   if (isLoading) {
     return <GridSkeleton />;
   }
 
-  const fetchedMediaCount =
-    data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
-
-  console.log("TAB", selectedTab);
-  console.log("MEDIA", mediaType);
-
   return (
     <main>
+      {scrollPosition > 300 && <ScrollToTopBtn />}
       <Flex justify="between" align="center">
         <SegmentedControl.Root radius="full" size="1" value={mediaType}>
           <SegmentedControl.Item onClick={onSelectMovie} value="movie">

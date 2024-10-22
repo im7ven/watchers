@@ -1,4 +1,4 @@
-import { Flex, Button } from "@radix-ui/themes";
+import { Flex, Button, Box } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { IoReturnUpBackOutline } from "react-icons/io5";
@@ -12,7 +12,6 @@ const BackButton = () => {
 
   return (
     <Button
-      mb={{ initial: "2", sm: "3" }}
       variant="ghost"
       color="gray"
       style={{ color: "white" }}

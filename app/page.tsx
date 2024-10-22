@@ -80,7 +80,7 @@ export default function Home() {
     <main>
       <ScrollToTopBtn />
       <Flex justify="between" align="center">
-        <SegmentedControl.Root radius="full" size="1" value={mediaType}>
+        <SegmentedControl.Root ml="1" radius="full" size="1" value={mediaType}>
           <SegmentedControl.Item onClick={onSelectMovie} value="movie">
             Movie
           </SegmentedControl.Item>

@@ -13,7 +13,7 @@ const useMediaCredits = (mediaId: string, mediaType: string) => {
       name: crew?.name,
       media_type: "person",
       src: crew.profile_path ? posterPath + crew.profile_path : placeholderImg,
-      alt: crew.name,
+      alt: crew.name + "poster",
     })) || [];
 
   const castSlides =
@@ -34,7 +34,7 @@ const useMediaCredits = (mediaId: string, mediaType: string) => {
       src: media.poster_path
         ? posterPath + media.poster_path
         : mediaPlaceholder,
-      alt: media.title,
+      alt: media.title + "poster",
     })) || [];
 
   return { castSlides, crewSlides, similarMediaSlides };

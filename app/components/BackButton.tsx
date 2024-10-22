@@ -12,7 +12,7 @@ const BackButton = () => {
 
   return (
     <Button
-      mb="4"
+      mb={{ initial: "2", sm: "3" }}
       variant="ghost"
       color="gray"
       style={{ color: "white" }}

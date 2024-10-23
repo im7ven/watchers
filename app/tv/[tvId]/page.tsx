@@ -45,7 +45,7 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
         <BackButton />
       </Box>
       <Container size="2">
-        <Flex gap="2">
+        <Flex gap="2" align="start">
           <ImageModal imgSrc={imagePoster} alt={tvSeries?.name + "Poster"} />
           <Box flexGrow="1">
             <Flex gap="2" justify="between">

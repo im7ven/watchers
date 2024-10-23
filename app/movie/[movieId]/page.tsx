@@ -61,7 +61,7 @@ const MoviePage = ({ params: { movieId } }: Props) => {
         <BackButton />
       </Box>
       <Container size="2">
-        <Flex gap="2">
+        <Flex gap="2" align="start">
           <ImageModal alt={`${movie?.title} poster`} imgSrc={imagePoster} />
           <Box flexGrow="1">
             <Flex gap="2" justify="between">

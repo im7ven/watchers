@@ -1,13 +1,11 @@
 "use client";
-import logo from "@/public/logo.png";
-import { Flex, Heading, Text, TextField } from "@radix-ui/themes";
-import Image from "next/image";
-import Link from "next/link";
+import { Flex, Text, TextField } from "@radix-ui/themes";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { useSearchValue } from "../contexts/SearchContext";
 import Menu from "./Menu";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const router = useRouter();
@@ -45,13 +43,8 @@ const Navbar = () => {
   return (
     <header className="border-b border-[rgba(255,255,255,.2)] py-3 px-3 lg:px-0">
       <nav>
-        <Flex justify="between" align="center" gap="5">
-          <Link href="/" className="flex items-center gap-2 md:mr-5">
-            <Image className="w-9" src={logo} alt="Logo image" />
-            <Heading className="hidden md:block">
-              <span className="text-[#ffc53d]">W</span>atchers
-            </Heading>
-          </Link>
+        <Flex justify="between" align="center" gap={{ initial: "2", md: "3" }}>
+          <Logo />
           <form onSubmit={handleSubmit}>
             <TextField.Root
               onBlur={handleResetValidation}

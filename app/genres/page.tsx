@@ -51,7 +51,6 @@ const GenrePage = () => {
                 : "border border-[rgba(255,255,255,.2)]"
             } box-border rounded-lg `}
             key={genre.id}
-            // href={`/genres/${genre.id}`}
           >
             <Flex
               align="center"
@@ -63,6 +62,8 @@ const GenrePage = () => {
                 src={genre.image!}
                 alt="Sonic movie cover"
                 fill
+                priority
+                sizes="(max-width: 768px) 200px, 300px"
               />
               <Text weight={"bold"}>{genre.name}</Text>
             </Flex>

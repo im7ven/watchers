@@ -3,7 +3,7 @@
 import BackButton from "@/app/components/BackButton";
 import ScrollToTopBtn from "@/app/components/ScrollToTopBtn";
 import useData from "@/app/hooks/useData";
-import { Spinner, Grid, Box } from "@radix-ui/themes";
+import { Spinner, Grid, Box, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -32,6 +32,8 @@ const MovieGenrePage = ({ params: { genreId } }: Props) => {
     }
   );
 
+  const totalResults = data?.pages[0].total_results!;
+
   const fetchedMediaCount =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
 
@@ -47,6 +49,12 @@ const MovieGenrePage = ({ params: { genreId } }: Props) => {
         next={() => fetchNextPage()}
         loader={<Spinner />}
       >
+        {totalResults < 1 && (
+          <Text as="p" weight={"bold"} color="amber" align="center">
+            Sorry, no movies results were found.
+          </Text>
+        )}
+
         <Grid columns={{ initial: "3", xs: "5", sm: "6" }} gap="1" mx="auto">
           {data?.pages.map((page, index) => (
             <React.Fragment key={index}>

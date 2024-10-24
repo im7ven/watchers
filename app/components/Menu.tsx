@@ -38,15 +38,17 @@ const Menu = () => {
             </Flex>
           </DropdownMenu.Item>
         )}
-        <DropdownMenu.Item>Watch List</DropdownMenu.Item>
-        <DropdownMenu.Item>Reviews</DropdownMenu.Item>
-
-        <DropdownMenu.Separator />
         <Link href="/genres">
           <DropdownMenu.Item onSelect={() => setOpen(false)}>
             Genres
           </DropdownMenu.Item>
         </Link>
+
+        <DropdownMenu.Separator />
+        <Link href={"/watchlist"}>
+          <DropdownMenu.Item>Watch List</DropdownMenu.Item>
+        </Link>
+        <DropdownMenu.Item>My Reviews</DropdownMenu.Item>
         <DropdownMenu.Separator />
         <DropdownMenu.Item
           className="hover:bg-transparent"

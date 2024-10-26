@@ -45,3 +45,30 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Failed to add moive" }, { status: 500 });
   }
 }
+
+export async function GET(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+
+  if (!session || !session.user) {
+    return NextResponse.json(
+      { error: "Must be authenticated" },
+      { status: 401 }
+    );
+  }
+
+  try {
+    const db = (await client).db();
+    const watchlist = await db
+      .collection("watchlist")
+      .find({
+        userId: session.user.email,
+      })
+      .toArray();
+    return NextResponse.json(watchlist, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to retrieve the watch list" },
+      { status: 500 }
+    );
+  }
+}

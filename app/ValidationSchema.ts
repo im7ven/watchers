@@ -6,6 +6,6 @@ export const addMediaSchema = z.object({
   mediaPoster: z.string(),
   mediaTitle: z.string(),
   mediaRating: z.number(),
-  mediaRuntime: z.string(),
+  mediaRuntime: z.number(),
   mediaRelease: z.string(),
 });

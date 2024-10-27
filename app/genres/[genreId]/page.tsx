@@ -1,7 +1,7 @@
 "use client";
 
 import BackButton from "@/app/components/BackButton";
-import PlaceholderMessage from "@/app/components/PlaceholderMessage";
+import PlaceholderAlert from "@/app/components/PlaceholderAlert";
 import ScrollToTopBtn from "@/app/components/ScrollToTopBtn";
 import useData from "@/app/hooks/useData";
 import { Spinner, Grid, Box, Text } from "@radix-ui/themes";
@@ -51,7 +51,7 @@ const MovieGenrePage = ({ params: { genreId } }: Props) => {
         loader={<Spinner />}
       >
         {totalResults < 1 && (
-          <PlaceholderMessage message="Sorry, no movies results were found." />
+          <PlaceholderAlert message="Sorry, no movies results were found." />
         )}
 
         <Grid columns={{ initial: "3", xs: "5", sm: "6" }} gap="1" mx="auto">

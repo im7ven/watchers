@@ -13,8 +13,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import { MediaDetail } from "../hooks/useMediaDetails";
-import ProviderAlert from "./ProviderAlert";
-Image;
+import PlaceholderAlert from "./PlaceholderAlert";
 
 type Props = {
   media: MediaDetail;
@@ -79,7 +78,7 @@ const ProvidersDialog = ({ media }: Props) => {
                 </Flex>
               ))
             ) : (
-              <ProviderAlert watchMethod="streaming" />
+              <PlaceholderAlert message="Currently, not available for streaming in your country." />
             )}
           </Flex>
           <Separator my="3" size="4" />
@@ -101,7 +100,7 @@ const ProvidersDialog = ({ media }: Props) => {
                 </Flex>
               ))
             ) : (
-              <ProviderAlert watchMethod="renting" />
+              <PlaceholderAlert message="Currently, not available for renting in your country." />
             )}
           </Flex>
         </Dialog.Content>

@@ -1,18 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
-import useGenres from "../hooks/useGenres";
-import { Box, Button, Card, Flex, Grid, Spinner, Text } from "@radix-ui/themes";
+import { Box, Button, Flex, Grid, Text } from "@radix-ui/themes";
 import Image from "next/image";
-import sonicImg from "@/public/sonicCover.png";
-import genres from "../data/genres";
 import Link from "next/link";
+import { useState } from "react";
 import BackButton from "../components/BackButton";
-
-type SelectedGenres = {};
+import genres from "../data/genres";
 
 const GenrePage = () => {
-  const { data, isLoading, isError } = useGenres();
   const [selectedGenres, setSelectedGenres] = useState<number[]>([]);
 
   const handleAddGenre = (genreId: number) => {
@@ -22,16 +17,6 @@ const GenrePage = () => {
       setSelectedGenres((prev) => [...prev, genreId]);
     }
   };
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  if (isError) {
-    return;
-  }
-
-  console.log(selectedGenres.join("&&"));
 
   return (
     <Box p="4">
@@ -60,7 +45,7 @@ const GenrePage = () => {
               <Image
                 className="object-cover opacity-20 absolute inset-0 -z-10"
                 src={genre.image!}
-                alt="Sonic movie cover"
+                alt={genre.name + "background image"}
                 fill
                 priority
                 sizes="(max-width: 768px) 200px, 300px"

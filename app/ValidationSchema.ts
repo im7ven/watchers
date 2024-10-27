@@ -9,3 +9,7 @@ export const addMediaSchema = z.object({
   mediaRuntime: z.number(),
   mediaRelease: z.string(),
 });
+
+export const removeMediaSchema = z.object({
+  mediaId: z.number(),
+});

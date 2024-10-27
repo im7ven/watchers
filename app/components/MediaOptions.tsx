@@ -1,11 +1,9 @@
-import { Button, DropdownMenu, Text } from "@radix-ui/themes";
-import React from "react";
-import { BsBookmarkPlusFill } from "react-icons/bs";
-import { SlOptionsVertical } from "react-icons/sl";
-import { MdRateReview } from "react-icons/md";
+import { DropdownMenu } from "@radix-ui/themes";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { error } from "console";
+import { BsBookmarkPlusFill } from "react-icons/bs";
+import { MdRateReview } from "react-icons/md";
+import { SlOptionsVertical } from "react-icons/sl";
 
 type Media = {
   mediaId: number;

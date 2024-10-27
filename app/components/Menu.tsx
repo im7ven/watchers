@@ -8,12 +8,26 @@ import {
 } from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { IoMenu } from "react-icons/io5";
 
 const Menu = () => {
   const { data: sessionData, status } = useSession();
   const [open, setOpen] = useState(false);
+  const router = useRouter();
+
+  const handleWatlishRoute = () => {
+    status === "authenticated"
+      ? router.push("/watchlist")
+      : router.push("/auth/signin");
+  };
+
+  const handleReviewRoute = () => {
+    status === "authenticated"
+      ? router.push("/watchlist")
+      : router.push("/auth/signin");
+  };
 
   return (
     <DropdownMenu.Root open={open} onOpenChange={setOpen}>
@@ -45,10 +59,12 @@ const Menu = () => {
         </Link>
 
         <DropdownMenu.Separator />
-        <Link href={"/watchlist"}>
-          <DropdownMenu.Item>Watch List</DropdownMenu.Item>
-        </Link>
-        <DropdownMenu.Item>My Reviews</DropdownMenu.Item>
+        <DropdownMenu.Item onClick={handleWatlishRoute}>
+          Watch List
+        </DropdownMenu.Item>
+        <DropdownMenu.Item onClick={handleReviewRoute}>
+          My Reviews
+        </DropdownMenu.Item>
         <DropdownMenu.Separator />
         <DropdownMenu.Item
           className="hover:bg-transparent"

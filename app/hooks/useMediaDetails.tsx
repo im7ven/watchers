@@ -80,7 +80,7 @@ export type MediaDetail = {
   title: string;
   name?: string;
   first_air_date: string;
-  number_of_seasons: string;
+  number_of_seasons: number;
   poster_path?: string;
   genres: Genre[];
   budget: number;

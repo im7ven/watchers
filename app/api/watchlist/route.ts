@@ -31,6 +31,7 @@ export async function POST(req: NextRequest) {
     mediaRating,
     mediaRelease,
     mediaRuntime,
+    mediaSeasons,
   } = validation.data;
 
   try {
@@ -59,7 +60,7 @@ export async function POST(req: NextRequest) {
       mediaRuntime,
       mediaRating,
       mediaRelease,
-
+      mediaSeasons,
       createdAt: new Date(),
     });
 

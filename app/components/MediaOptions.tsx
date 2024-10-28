@@ -4,19 +4,22 @@ import axios from "axios";
 import { BsBookmarkPlusFill } from "react-icons/bs";
 import { MdRateReview } from "react-icons/md";
 import { SlOptionsVertical } from "react-icons/sl";
+import { useToast } from "../contexts/ToastContext";
 
 type Media = {
   mediaId: number;
   mediaTitle: string;
   mediaPoster: string;
   mediaType: string;
-  mediaRuntime: number;
+  mediaRuntime?: number;
   mediaRating: number;
   mediaRelease: string;
+  mediaSeasons?: number;
 };
 
 const MediaOptions = ({ ...media }: Media) => {
   const queryClient = useQueryClient();
+  const { setShowToast } = useToast();
 
   const addToWatchlist = useMutation<Media, Error, Media>({
     mutationFn: async (media: Media) => {
@@ -31,6 +34,7 @@ const MediaOptions = ({ ...media }: Media) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["watchlist"] });
+      setShowToast(true);
     },
   });
 

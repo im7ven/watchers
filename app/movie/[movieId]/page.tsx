@@ -1,29 +1,21 @@
 "use client";
 
+import BackButton from "@/app/components/BackButton";
 import DetailPageSkeleton from "@/app/components/DetailPageSkeleton";
 import EmblaCarousel from "@/app/components/EmblaCarousel";
 import ImageModal from "@/app/components/ImageModal";
+import MediaOptions from "@/app/components/MediaOptions";
 import MovieDataList from "@/app/components/MovieDataList";
 import ProvidersDialog from "@/app/components/ProvidersDialog";
+import Toast from "@/app/components/Toast";
 import VideoPlayer from "@/app/components/VideoPlayer";
 import useMediaCredits from "@/app/hooks/useMediaCredits";
 import useMediaDetails from "@/app/hooks/useMediaDetails";
 import moviePlaceholder from "@/public/movie_placeholder.png";
-import {
-  Badge,
-  Box,
-  Button,
-  Container,
-  Flex,
-  Heading,
-  Text,
-} from "@radix-ui/themes";
+import { Badge, Box, Container, Flex, Heading, Text } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
-import { IoReturnUpBackOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa";
-import { MdFavorite } from "react-icons/md";
 import { TbPointFilled } from "react-icons/tb";
-import BackButton from "@/app/components/BackButton";
 
 type Props = {
   params: { movieId: string };
@@ -59,6 +51,7 @@ const MoviePage = ({ params: { movieId } }: Props) => {
     <main className="p-4">
       <Box pb={{ initial: "2" }}>
         <BackButton />
+        <Toast message={`${movie?.title} has been added to your watchlist`} />
       </Box>
       <Container size="2">
         <Flex gap="2" align="start">
@@ -68,7 +61,15 @@ const MoviePage = ({ params: { movieId } }: Props) => {
               <Heading as="h1" weight="light">
                 {movie?.title}
               </Heading>
-              <MdFavorite size="25" color="#FF8A95" />
+              <MediaOptions
+                mediaTitle={movie?.title!}
+                mediaPoster={movie?.poster_path!}
+                mediaId={movie?.id!}
+                mediaType="movie"
+                mediaRating={movie?.vote_average!}
+                mediaRelease={movie?.release_date!}
+                mediaRuntime={movie?.runtime!}
+              />
             </Flex>
 
             <Flex className="mt-2" align="center" gap="1">

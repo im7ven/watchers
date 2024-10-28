@@ -4,14 +4,15 @@ import BackButton from "@/app/components/BackButton";
 import DetailPageSkeleton from "@/app/components/DetailPageSkeleton";
 import EmblaCarousel from "@/app/components/EmblaCarousel";
 import ImageModal from "@/app/components/ImageModal";
+import MediaOptions from "@/app/components/MediaOptions";
 import ProvidersDialog from "@/app/components/ProvidersDialog";
+import Toast from "@/app/components/Toast";
 import VideoPlayer from "@/app/components/VideoPlayer";
 import useMediaCredits from "@/app/hooks/useMediaCredits";
 import useMediaDetails from "@/app/hooks/useMediaDetails";
 import mediaPlaceholder from "@/public/movie_placeholder.png";
 import { Badge, Box, Container, Flex, Heading, Text } from "@radix-ui/themes";
 import { FaStar } from "react-icons/fa";
-import { MdFavorite } from "react-icons/md";
 import { TbPointFilled } from "react-icons/tb";
 
 type Props = {
@@ -43,6 +44,7 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
     <main className="p-4">
       <Box pb={{ initial: "2" }}>
         <BackButton />
+        <Toast message={`${tvSeries?.name} has been added to your watchlist`} />
       </Box>
       <Container size="2">
         <Flex gap="2" align="start">
@@ -52,7 +54,16 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
               <Heading as="h1" weight="light">
                 {tvSeries?.name}
               </Heading>
-              <MdFavorite size="25" color="#FF8A95" />
+              <MediaOptions
+                mediaId={tvSeries?.id!}
+                mediaPoster={tvSeries?.poster_path!}
+                mediaRating={tvSeries?.vote_average!}
+                mediaRelease={tvSeries?.first_air_date!}
+                mediaRuntime={tvSeries?.runtime!}
+                mediaTitle={tvSeries?.name!}
+                mediaSeasons={tvSeries?.number_of_seasons!}
+                mediaType="tv"
+              />
             </Flex>
 
             <Flex className="mt-2" align="center" gap="1">
@@ -64,7 +75,9 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
               <Text as="p">
                 {tvSeries?.number_of_seasons}{" "}
                 {`${
-                  Number(tvSeries?.number_of_seasons) < 2 ? "Season" : "Seasons"
+                  tvSeries?.number_of_seasons && tvSeries.number_of_seasons < 2
+                    ? "Season"
+                    : "Seasons"
                 }`}
               </Text>
             </Flex>

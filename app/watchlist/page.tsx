@@ -20,8 +20,9 @@ type WatchListMedia = {
   mediaPoster: string;
   mediaTitle: string;
   mediaRating: number;
-  mediaRuntime: string;
+  mediaRuntime?: string;
   mediaRelease: string;
+  mediaSeasons?: number;
 };
 
 const posterUrl = `https://image.tmdb.org/t/p/w500`;
@@ -96,14 +97,25 @@ const UserWatchListPage = () => {
                 {item.mediaTitle}
               </Heading>
               <span onClick={() => handleDeleteItem({ mediaId: item.mediaId })}>
-                <MdOutlineDelete size={25} color="#DC6E6E" />
+                <MdOutlineDelete size={30} color="#DC6E6E" />
               </span>
             </Flex>
             <Flex className="mt-2" align="center" gap="1">
               <FaRegStar size={20} color="#ffcd53" />
               <Text as="p">{item.mediaRating.toFixed(1)}</Text>
               <TbPointFilled />
-              <Text as="p">{item.mediaRuntime} min</Text>
+              <Text as="p">
+                {item.mediaRuntime
+                  ? item.mediaRuntime + " min"
+                  : item.mediaSeasons}{" "}
+                {`${
+                  item?.mediaSeasons != null
+                    ? item.mediaSeasons < 2
+                      ? "Season"
+                      : "Seasons"
+                    : ""
+                }`}
+              </Text>
               <TbPointFilled />
               <Text>{item?.mediaRelease.slice(0, 4)}</Text>
             </Flex>

@@ -7,6 +7,8 @@ import { Container, Theme } from "@radix-ui/themes";
 import QueryClientProvider from "./QueryClientProvider";
 import Navbar from "./components/Navbar";
 import { SearchContextProvider } from "./contexts/SearchContext";
+import { ToastContextProvider } from "./contexts/ToastContext";
+import Toast from "./components/Toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,12 +28,14 @@ export default function RootLayout({
         <QueryClientProvider>
           <AuthProvider>
             <Theme appearance="dark" accentColor="amber" grayColor="sage">
-              <Container maxWidth="1000px">
-                <SearchContextProvider>
-                  <Navbar />
-                  {children}
-                </SearchContextProvider>
-              </Container>
+              <ToastContextProvider>
+                <Container maxWidth="1000px">
+                  <SearchContextProvider>
+                    <Navbar />
+                    {children}
+                  </SearchContextProvider>
+                </Container>
+              </ToastContextProvider>
             </Theme>
           </AuthProvider>
         </QueryClientProvider>

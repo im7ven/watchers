@@ -6,8 +6,9 @@ export const addMediaSchema = z.object({
   mediaPoster: z.string(),
   mediaTitle: z.string(),
   mediaRating: z.number(),
-  mediaRuntime: z.number(),
+  mediaRuntime: z.number().optional(),
   mediaRelease: z.string(),
+  mediaSeasons: z.number().optional(),
 });
 
 export const removeMediaSchema = z.object({

@@ -51,7 +51,14 @@ const MoviePage = ({ params: { movieId } }: Props) => {
     <main className="p-4">
       <Box pb={{ initial: "2", sm: "3" }}>
         <BackButton />
-        <Toast message={`${movie?.title} has been added to your watchlist`} />
+        <Toast
+          message={
+            <span>
+              <span className="font-semibold">{movie?.title} </span>
+              has been added to your watch list
+            </span>
+          }
+        />
       </Box>
       <Container size="2">
         <Flex gap="2" align="start">

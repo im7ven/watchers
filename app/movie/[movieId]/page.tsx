@@ -52,14 +52,7 @@ const MoviePage = ({ params: { movieId } }: Props) => {
     <main className="p-4">
       <Box pb={{ initial: "2", sm: "3" }}>
         <BackButton />
-        <Toast
-          message={
-            <Flex align="center" gap="2">
-              <FaCheckCircle />
-              Added to your watch list
-            </Flex>
-          }
-        />
+        <Toast />
       </Box>
       <Container size="2">
         <Flex gap="2" align="start">

@@ -1,7 +1,9 @@
 import { ReactNode, useEffect } from "react";
 import { useToast } from "../contexts/ToastContext";
+import { Flex } from "@radix-ui/themes";
+import { FaCheckCircle } from "react-icons/fa";
 
-const Toast = ({ message }: { message: ReactNode }) => {
+const Toast = () => {
   const { showToast, setShowToast, currentPath } = useToast();
 
   useEffect(() => {
@@ -26,7 +28,10 @@ const Toast = ({ message }: { message: ReactNode }) => {
           : "max-h-0 opacity-0 -translate-y-6 -z-10 "
       }`}
     >
-      {message}
+      <Flex align="center" gap="2">
+        <FaCheckCircle />
+        Added to your watch list
+      </Flex>
     </div>
   );
 };

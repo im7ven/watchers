@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(
       { message: `${validation.data.mediaType} added to watchlist` },
-      { status: 200 }
+      { status: 201 }
     );
   } catch (error) {
     console.log("Error adding movie to watchlist", error);

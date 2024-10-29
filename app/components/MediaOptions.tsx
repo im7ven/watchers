@@ -5,6 +5,9 @@ import { BsBookmarkPlusFill } from "react-icons/bs";
 import { MdRateReview } from "react-icons/md";
 import { SlOptionsVertical } from "react-icons/sl";
 import { useToast } from "../contexts/ToastContext";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import ReviewModal from "./ReviewModal";
 
 type Media = {
   mediaId: string;
@@ -19,6 +22,7 @@ type Media = {
 
 const MediaOptions = ({ ...media }: Media) => {
   const queryClient = useQueryClient();
+  const currentPath = usePathname();
   const { setShowToast } = useToast();
 
   const addToWatchlist = useMutation<Media, Error, Media>({
@@ -56,9 +60,12 @@ const MediaOptions = ({ ...media }: Media) => {
           <BsBookmarkPlusFill size="20" />
           Add to watch list
         </DropdownMenu.Item>
-        <DropdownMenu.Item>
-          <MdRateReview size="20" />
-          Add review
+        <DropdownMenu.Item asChild>
+          <ReviewModal
+            reviewId={media.mediaId}
+            reviewPoster={media.mediaPoster}
+            reviewTitle={media.mediaTitle}
+          />
         </DropdownMenu.Item>
       </DropdownMenu.Content>
     </DropdownMenu.Root>

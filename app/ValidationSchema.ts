@@ -14,3 +14,14 @@ export const addMediaSchema = z.object({
 export const removeMediaSchema = z.object({
   mediaId: z.number(),
 });
+
+export const addMediaReview = z.object({
+  reviewId: z.string(),
+  reviewPoster: z.string(),
+  reviewTitle: z.string(),
+  reviewMessage: z
+    .string()
+    .min(3, { message: "Review must be at least 3 characters" })
+    .max(500, { message: "Review has a maximum of 500 characters." }),
+  reviewRating: z.number().min(1).max(100),
+});

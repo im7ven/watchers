@@ -1,20 +1,36 @@
 "use client";
 
-import { createContext, ReactNode, useContext, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 type ToastContextValue = {
   showToast: boolean;
   setShowToast: React.Dispatch<React.SetStateAction<boolean>>;
+  currentPath: string;
 };
 
 const ToastContext = createContext<ToastContextValue | null>(null);
 
 export const ToastContextProvider = ({ children }: { children: ReactNode }) => {
   const [showToast, setShowToast] = useState(false);
-  console.log("ToastContextProvider rendered");
+  const currentPath = usePathname();
+  const regex: RegExp = /^\/(tv|movie)\/\d+$/;
+  const isMediaPath = regex.test(currentPath);
+
+  useEffect(() => {
+    if (!isMediaPath) {
+      setShowToast(false);
+    }
+  }, [currentPath]);
 
   return (
-    <ToastContext.Provider value={{ showToast, setShowToast }}>
+    <ToastContext.Provider value={{ showToast, setShowToast, currentPath }}>
       {children}
     </ToastContext.Provider>
   );

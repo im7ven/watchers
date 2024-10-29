@@ -1,8 +1,8 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect } from "react";
 import { useToast } from "../contexts/ToastContext";
 
 const Toast = ({ message }: { message: ReactNode }) => {
-  const { showToast, setShowToast } = useToast();
+  const { showToast, setShowToast, currentPath } = useToast();
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -10,13 +10,13 @@ const Toast = ({ message }: { message: ReactNode }) => {
     if (showToast) {
       timer = setTimeout(() => {
         setShowToast(false);
-      }, 4000);
+      }, 3000);
     }
 
     return () => {
       clearTimeout(timer);
     };
-  }, [showToast, setShowToast]);
+  }, [showToast]);
 
   return (
     <div

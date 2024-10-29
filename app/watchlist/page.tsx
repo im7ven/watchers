@@ -100,10 +100,10 @@ const UserWatchListPage = () => {
                 {item.mediaTitle}
               </Heading>
               <Button
-                color="gray"
+                // color="gray"
                 onClick={() => handleDeleteItem({ mediaId: item.mediaId })}
               >
-                <TbTrashFilled size={20} color="#fff" />
+                <TbTrashFilled size={20} />
               </Button>
             </Flex>
             <Flex className="mt-2" align="center" gap="1">

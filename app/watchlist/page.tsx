@@ -95,12 +95,12 @@ const UserWatchListPage = () => {
           </Link>
 
           <Box width="100%">
-            <Flex justify="between" align="center">
+            <Flex justify="between" align="center" gap="6">
               <Heading weight="medium" as="h2" size="4">
                 {item.mediaTitle}
               </Heading>
               <Button
-                // color="gray"
+                style={{ alignSelf: "flex-start" }}
                 onClick={() => handleDeleteItem({ mediaId: item.mediaId })}
               >
                 <TbTrashFilled size={20} />

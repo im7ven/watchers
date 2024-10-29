@@ -11,6 +11,7 @@ import { FaRegStar } from "react-icons/fa";
 import { TbPointFilled } from "react-icons/tb";
 import PlaceholderAlert from "../components/PlaceholderAlert";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
+import { TbTrashFilled } from "react-icons/tb";
 import { MdOutlineDelete } from "react-icons/md";
 import React from "react";
 
@@ -64,10 +65,12 @@ const UserWatchListPage = () => {
 
   if (media && media.length < 1) {
     return (
-      <PlaceholderAlert
-        marginTop="4"
-        message="You currently have no items in your watchlist"
-      />
+      <Box px="4">
+        <PlaceholderAlert
+          marginTop="4"
+          message="You currently have no items in your watchlist"
+        />
+      </Box>
     );
   }
 
@@ -96,9 +99,12 @@ const UserWatchListPage = () => {
               <Heading weight="medium" as="h2" size="4">
                 {item.mediaTitle}
               </Heading>
-              <span onClick={() => handleDeleteItem({ mediaId: item.mediaId })}>
-                <MdOutlineDelete size={30} color="#DC6E6E" />
-              </span>
+              <Button
+                color="gray"
+                onClick={() => handleDeleteItem({ mediaId: item.mediaId })}
+              >
+                <TbTrashFilled size={20} color="#fff" />
+              </Button>
             </Flex>
             <Flex className="mt-2" align="center" gap="1">
               <FaRegStar size={20} color="#ffcd53" />

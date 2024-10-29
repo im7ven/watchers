@@ -52,6 +52,11 @@ const Menu = () => {
             </Flex>
           </DropdownMenu.Item>
         )}
+        <Link href="/">
+          <DropdownMenu.Item onSelect={() => setOpen(false)}>
+            Home
+          </DropdownMenu.Item>
+        </Link>
         <Link href="/genres">
           <DropdownMenu.Item onSelect={() => setOpen(false)}>
             Genres

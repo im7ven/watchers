@@ -7,7 +7,7 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { useToast } from "../contexts/ToastContext";
 
 type Media = {
-  mediaId: number;
+  mediaId: string;
   mediaTitle: string;
   mediaPoster: string;
   mediaType: string;

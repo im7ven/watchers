@@ -62,7 +62,7 @@ const TvSeriesDetailPage = ({ params: { tvId } }: Props) => {
                 {tvSeries?.name}
               </Heading>
               <MediaOptions
-                mediaId={tvSeries?.id!}
+                mediaId={tvSeries?.id.toString() + tvSeries?.name!}
                 mediaPoster={tvSeries?.poster_path!}
                 mediaRating={tvSeries?.vote_average!}
                 mediaRelease={tvSeries?.first_air_date!}

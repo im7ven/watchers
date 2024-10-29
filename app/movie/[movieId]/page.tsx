@@ -16,6 +16,7 @@ import { Badge, Box, Container, Flex, Heading, Text } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 import { FaStar } from "react-icons/fa";
 import { TbPointFilled } from "react-icons/tb";
+import { FaCheckCircle } from "react-icons/fa";
 
 type Props = {
   params: { movieId: string };
@@ -53,10 +54,10 @@ const MoviePage = ({ params: { movieId } }: Props) => {
         <BackButton />
         <Toast
           message={
-            <span>
-              <span className="font-semibold">{movie?.title} </span>
-              has been added to your watch list
-            </span>
+            <Flex align="center" gap="2">
+              <FaCheckCircle />
+              Added to your watch list
+            </Flex>
           }
         />
       </Box>
@@ -71,7 +72,7 @@ const MoviePage = ({ params: { movieId } }: Props) => {
               <MediaOptions
                 mediaTitle={movie?.title!}
                 mediaPoster={movie?.poster_path!}
-                mediaId={movie?.id!}
+                mediaId={movie?.id.toString() + movie?.title!}
                 mediaType="movie"
                 mediaRating={movie?.vote_average!}
                 mediaRelease={movie?.release_date!}

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const addMediaSchema = z.object({
-  mediaId: z.number(),
+  mediaId: z.string(),
   mediaType: z.string(),
   mediaPoster: z.string(),
   mediaTitle: z.string(),

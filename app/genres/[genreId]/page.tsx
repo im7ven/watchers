@@ -39,9 +39,9 @@ const MovieGenrePage = ({ params: { genreId } }: Props) => {
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
 
   return (
-    <Box pt={{ initial: "1", sm: "3" }}>
+    <Box px="4">
       <ScrollToTopBtn />
-      <Box py="2">
+      <Box py="3">
         <BackButton />
       </Box>
       <InfiniteScroll

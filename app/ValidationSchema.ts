@@ -12,7 +12,7 @@ export const addMediaSchema = z.object({
 });
 
 export const removeMediaSchema = z.object({
-  mediaId: z.number(),
+  mediaId: z.string(),
 });
 
 export const addMediaReview = z.object({

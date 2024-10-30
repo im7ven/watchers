@@ -101,9 +101,10 @@ const UserWatchListPage = () => {
               </Heading>
               <Button
                 style={{ alignSelf: "flex-start" }}
+                disabled={deleteWatchlistItem.isPending}
                 onClick={() => handleDeleteItem({ mediaId: item.mediaId })}
               >
-                <TbTrashFilled size={20} />
+                {<TbTrashFilled size={20} />}
               </Button>
             </Flex>
             <Flex className="mt-2" align="center" gap="1">

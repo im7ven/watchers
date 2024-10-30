@@ -1,4 +1,5 @@
 "use client";
+import { Box } from "@radix-ui/themes";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -29,15 +30,22 @@ const SignInPage = () => {
   };
 
   return (
-    <div>
+    <Box
+      maxWidth="500px"
+      mx="auto"
+      className="border-[2px] border-[#ffc53d] rounded"
+    >
       <h1>Sign In</h1>
       {providers &&
         Object.values(providers).map((provider: any) => (
           <div key={provider.name}>
-            <GoogleButton onClick={() => handleSignIn(provider.id)} />
+            <GoogleButton
+              className="mx-auto"
+              onClick={() => handleSignIn(provider.id)}
+            />
           </div>
         ))}
-    </div>
+    </Box>
   );
 };
 

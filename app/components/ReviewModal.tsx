@@ -1,20 +1,20 @@
 import {
-  Dialog,
+  Box,
   Button,
+  Dialog,
+  Flex,
+  Slider,
+  Spinner,
   Text,
   TextArea,
-  Slider,
-  Box,
-  Flex,
-  Spinner,
 } from "@radix-ui/themes";
-import React, { forwardRef, useState } from "react";
-import { MdRateReview } from "react-icons/md";
-import { FaRegStar } from "react-icons/fa";
-import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { forwardRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { FaRegStar } from "react-icons/fa";
+import { MdRateReview } from "react-icons/md";
 
 type ReviewForm = {
   reviewMessage: string;
@@ -32,6 +32,7 @@ const ReviewModal = forwardRef<HTMLDivElement, ReviewProps>(
   ({ reviewId, reviewPoster, reviewTitle }, ref) => {
     const router = useRouter();
     const [rating, setRating] = useState<number[]>([50]);
+    const [isOpen, setIsOpen] = useState(false);
     const {
       register,
       handleSubmit,
@@ -72,7 +73,7 @@ const ReviewModal = forwardRef<HTMLDivElement, ReviewProps>(
     };
 
     return (
-      <Dialog.Root>
+      <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
         <Dialog.Trigger>
           <span className="flex px-[12px] gap-x-2 items-center text-sm hover:bg-[#ffc53d] py-1 hover:text-[#21201c] rounded transition cursor-default">
             <MdRateReview size="22" />
@@ -120,9 +121,14 @@ const ReviewModal = forwardRef<HTMLDivElement, ReviewProps>(
                 <Text color="red">{errors.reviewMessage.message}</Text>
               </Box>
             )}
-            <Button disabled={addReviewMutation.isPending} type="submit">
-              {addReviewMutation.isPending ? <Spinner /> : "Submit"}
-            </Button>
+            <Flex gap="2">
+              <Button color="gray" onClick={() => setIsOpen(false)}>
+                Cancel
+              </Button>
+              <Button disabled={addReviewMutation.isPending} type="submit">
+                {addReviewMutation.isPending ? <Spinner /> : "Submit"}
+              </Button>
+            </Flex>
           </form>
         </Dialog.Content>
       </Dialog.Root>
@@ -130,7 +136,6 @@ const ReviewModal = forwardRef<HTMLDivElement, ReviewProps>(
   }
 );
 
-// Set the display name
 ReviewModal.displayName = "ReviewModal";
 
 export default ReviewModal;

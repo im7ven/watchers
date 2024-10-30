@@ -1,20 +1,18 @@
 import {
-  Dialog,
   Box,
+  Button,
+  Dialog,
   Flex,
   Slider,
-  TextArea,
-  Button,
   Spinner,
   Text,
+  TextArea,
 } from "@radix-ui/themes";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { register } from "module";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaRegStar } from "react-icons/fa";
-import { MdRateReview } from "react-icons/md";
 import { RiEdit2Fill } from "react-icons/ri";
 
 type Props = {
@@ -117,9 +115,14 @@ const EditReviewModal = ({ reviewId, reviewMessage, reviewRating }: Props) => {
               <Text color="red">{errors.reviewMessage.message}</Text>
             </Box>
           )}
-          <Button disabled={updateReviewMutation.isPending} type="submit">
-            {updateReviewMutation.isPending ? <Spinner /> : "Submit"}
-          </Button>
+          <Flex gap="2">
+            <Button onClick={() => setIsOpen(false)} color="gray">
+              Cancel
+            </Button>
+            <Button disabled={updateReviewMutation.isPending} type="submit">
+              {updateReviewMutation.isPending ? <Spinner /> : "Submit"}
+            </Button>
+          </Flex>
         </form>
       </Dialog.Content>
     </Dialog.Root>

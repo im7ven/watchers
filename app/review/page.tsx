@@ -1,14 +1,14 @@
 "use client";
 
 import placeholderImg from "@/public/movie_placeholder.png";
-import { Box, Button, Flex, Heading, Text } from "@radix-ui/themes";
+import { Box, Button, Flex, Heading, Spinner, Text } from "@radix-ui/themes";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { GoDash } from "react-icons/go";
 import Image from "next/image";
 import { FaRegStar } from "react-icons/fa";
-import { RiEdit2Fill } from "react-icons/ri";
+import { GoDash } from "react-icons/go";
 import { TbTrashFilled } from "react-icons/tb";
+import EditReviewModal from "../components/EditReviewModal";
 import PlaceholderAlert from "../components/PlaceholderAlert";
 
 type Review = {
@@ -86,16 +86,20 @@ const ReviewPage = () => {
                 <Flex gap="1">
                   <Button
                     style={{ alignSelf: "flex-start" }}
+                    disabled={removeReviewMutation.isPending}
                     onClick={() => handleDeleteItem(review.reviewId)}
                   >
-                    <TbTrashFilled size={20} />
+                    {removeReviewMutation.isPending ? (
+                      <Spinner />
+                    ) : (
+                      <TbTrashFilled size={20} />
+                    )}
                   </Button>
-                  <Button
-                    style={{ alignSelf: "flex-start" }}
-                    onClick={() => {}}
-                  >
-                    <RiEdit2Fill size={20} />
-                  </Button>
+                  <EditReviewModal
+                    reviewId={review.reviewId}
+                    reviewMessage={review.reviewMessage}
+                    reviewRating={review.reviewRating}
+                  />
                 </Flex>
               </Flex>
               <Flex wrap={"wrap"} align="center" gap="1" mb="1">

@@ -50,11 +50,7 @@ const ReviewModal = forwardRef<HTMLDivElement, ReviewProps>(
         }
       },
       onSuccess: () => {
-        console.log("Review successfully created");
         router.push("/review");
-      },
-      onError: () => {
-        console.log("Issue creating review");
       },
     });
 

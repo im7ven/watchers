@@ -1,6 +1,8 @@
 import authOptions from "@/app/auth/authOptions";
-import { addMediaReview, removeReviewValidation } from "@/app/ValidationSchema";
-import { error } from "console";
+import {
+  addMediaReviewSchema,
+  removeReviewSchema,
+} from "@/app/ValidationSchema";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import client from "@/lib/db";
@@ -16,7 +18,7 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json();
-  const validation = addMediaReview.safeParse(body);
+  const validation = addMediaReviewSchema.safeParse(body);
 
   if (!validation.success) {
     return NextResponse.json(validation.error.errors, { status: 400 });
@@ -89,7 +91,7 @@ export async function DELETE(req: NextRequest) {
   }
 
   const body = await req.json();
-  const validation = removeReviewValidation.safeParse(body);
+  const validation = removeReviewSchema.safeParse(body);
 
   if (!validation.success) {
     return NextResponse.json(validation.error.errors, { status: 400 });

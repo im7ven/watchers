@@ -15,7 +15,7 @@ export const removeMediaSchema = z.object({
   mediaId: z.string(),
 });
 
-export const addMediaReview = z.object({
+export const addMediaReviewSchema = z.object({
   reviewId: z.string(),
   reviewPoster: z.string(),
   reviewTitle: z.string(),
@@ -26,6 +26,6 @@ export const addMediaReview = z.object({
   reviewRating: z.number().min(1).max(100),
 });
 
-export const removeReviewValidation = z.object({
+export const removeReviewSchema = z.object({
   reviewId: z.string(),
 });

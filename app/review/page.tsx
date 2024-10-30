@@ -4,7 +4,8 @@ import placeholderImg from "@/public/movie_placeholder.png";
 import { Box, Button, Flex, Heading, Text } from "@radix-ui/themes";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { error } from "console";
+import { GoDash } from "react-icons/go";
+
 import Image from "next/image";
 import { FaRegStar } from "react-icons/fa";
 import { RiEdit2Fill } from "react-icons/ri";
@@ -90,7 +91,10 @@ const ReviewPage = () => {
                 <FaRegStar color="#ffc53d" />
                 <Text size="4">{review.reviewRating / 10}</Text>
               </Flex>
-              <Text>{review.reviewMessage}</Text>
+              <Flex align="center" gap="1">
+                <GoDash />
+                <Text>{review.reviewMessage}</Text>
+              </Flex>
             </Box>
           </Flex>
         </Box>

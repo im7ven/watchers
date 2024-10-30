@@ -91,8 +91,8 @@ const ReviewPage = () => {
                 <FaRegStar color="#ffc53d" />
                 <Text size="4">{review.reviewRating / 10}</Text>
               </Flex>
-              <Flex align="center" gap="1">
-                <GoDash />
+              <Flex gap="1">
+                <GoDash className="pt-1" />
                 <Text>{review.reviewMessage}</Text>
               </Flex>
             </Box>

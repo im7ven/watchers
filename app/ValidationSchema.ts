@@ -29,3 +29,9 @@ export const addMediaReviewSchema = z.object({
 export const removeReviewSchema = z.object({
   reviewId: z.string(),
 });
+
+export const editReviewSchema = z.object({
+  reviewId: z.string(),
+  reviewMessage: z.string().optional(),
+  reviewRating: z.number().optional(),
+});

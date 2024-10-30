@@ -15,6 +15,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import GridSkeleton from "./components/GridSkeleton";
 import ScrollToTopBtn from "./components/ScrollToTopBtn";
 import useData from "./hooks/useData";
+import placeholderImg from "@/public/movie_placeholder.png";
 
 type MediaCover = {
   id: number;
@@ -139,7 +140,11 @@ export default function Home() {
                     <Image
                       width={165}
                       height={300}
-                      src={posterUrl + movie.poster_path}
+                      src={
+                        movie.poster_path
+                          ? posterUrl + movie.poster_path
+                          : placeholderImg
+                      }
                       alt="poster"
                     />
                   </Link>

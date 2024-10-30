@@ -14,9 +14,8 @@ import useMediaDetails from "@/app/hooks/useMediaDetails";
 import moviePlaceholder from "@/public/movie_placeholder.png";
 import { Badge, Box, Container, Flex, Heading, Text } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
-import { FaStar } from "react-icons/fa";
+import { FaRegStar } from "react-icons/fa";
 import { TbPointFilled } from "react-icons/tb";
-import { FaCheckCircle } from "react-icons/fa";
 
 type Props = {
   params: { movieId: string };
@@ -74,7 +73,8 @@ const MoviePage = ({ params: { movieId } }: Props) => {
             </Flex>
 
             <Flex className="mt-2" align="center" gap="1">
-              <FaStar size={20} color="yellow" />
+              <FaRegStar size={20} color="#ffc53d" />
+
               <Text as="p">{movie?.vote_average.toFixed(1)}</Text>
               <TbPointFilled />
               <Text as="p">{movie?.runtime} min</Text>

@@ -5,7 +5,6 @@ import { Box, Button, Flex, Heading, Text } from "@radix-ui/themes";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { GoDash } from "react-icons/go";
-
 import Image from "next/image";
 import { FaRegStar } from "react-icons/fa";
 import { RiEdit2Fill } from "react-icons/ri";

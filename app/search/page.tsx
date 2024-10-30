@@ -7,6 +7,7 @@ import { useSearchValue } from "../contexts/SearchContext";
 import Image from "next/image";
 import Link from "next/link";
 import placeholder from "@/public/movie_placeholder.png";
+import PlaceholderAlert from "../components/PlaceholderAlert";
 
 const SearchResultsPage = () => {
   const { searchVal } = useSearchValue();
@@ -15,6 +16,12 @@ const SearchResultsPage = () => {
   const filteredData = data?.results.filter(
     (media) => media.media_type !== "person"
   );
+
+  if (filteredData && filteredData?.length < 1) {
+    return (
+      <PlaceholderAlert message={`No result were found for ${searchVal}`} />
+    );
+  }
   return (
     <>
       <Flex p="3" direction="column" gap="2">
@@ -29,6 +36,7 @@ const SearchResultsPage = () => {
                       : placeholder
                   }
                   fill
+                  sizes="(max-width: 768px) 100px, (max-width: 1024px) 120px, 180px"
                   alt={media.title || "Movie cover"}
                 />
               </Container>

@@ -25,3 +25,7 @@ export const addMediaReview = z.object({
     .max(500, { message: "Review has a maximum of 500 characters." }),
   reviewRating: z.number().min(1).max(100),
 });
+
+export const removeReviewValidation = z.object({
+  reviewId: z.string(),
+});

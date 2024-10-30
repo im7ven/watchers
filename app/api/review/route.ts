@@ -1,5 +1,5 @@
 import authOptions from "@/app/auth/authOptions";
-import { addMediaReview } from "@/app/ValidationSchema";
+import { addMediaReview, removeReviewValidation } from "@/app/ValidationSchema";
 import { error } from "console";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
@@ -75,5 +75,42 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(reviews, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+
+  if (!session || !session?.user?.email) {
+    return NextResponse.json(
+      { error: "User must be authenticated" },
+      { status: 401 }
+    );
+  }
+
+  const body = await req.json();
+  const validation = removeReviewValidation.safeParse(body);
+
+  if (!validation.success) {
+    return NextResponse.json(validation.error.errors, { status: 400 });
+  }
+
+  const { reviewId } = validation.data;
+
+  const db = (await client).db();
+
+  const existingReview = await db.collection("review").findOne({
+    userId: session.user.email,
+    reviewId: reviewId,
+  });
+
+  if (!existingReview) {
+    return NextResponse.json(
+      { error: "The review does not exist" },
+      { status: 404 }
+    );
+  } else {
+    db.collection("review").deleteOne(existingReview);
+    return NextResponse.json({ status: 204 });
   }
 }

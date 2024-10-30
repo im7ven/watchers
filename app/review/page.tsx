@@ -89,11 +89,7 @@ const ReviewPage = () => {
                     disabled={removeReviewMutation.isPending}
                     onClick={() => handleDeleteItem(review.reviewId)}
                   >
-                    {removeReviewMutation.isPending ? (
-                      <Spinner />
-                    ) : (
-                      <TbTrashFilled size={20} />
-                    )}
+                    {<TbTrashFilled size={20} />}
                   </Button>
                   <EditReviewModal
                     reviewId={review.reviewId}

@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import placeholderImg from "@/public/movie_placeholder.png";
 
 type MediaCover = {
   id: number;
@@ -68,7 +69,11 @@ const MovieGenrePage = ({ params: { genreId } }: Props) => {
                     <Image
                       width={165}
                       height={300}
-                      src={posterUrl + movie.poster_path}
+                      src={
+                        movie.poster_path
+                          ? posterUrl + movie.poster_path
+                          : placeholderImg
+                      }
                       alt="poster"
                     />
                   </Link>

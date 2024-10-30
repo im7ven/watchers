@@ -1,9 +1,9 @@
 "use client";
-import { Box } from "@radix-ui/themes";
+import { Box, Button, Card, Flex, Heading } from "@radix-ui/themes";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import GoogleButton from "react-google-button";
+import { useEffect, useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 
 const SignInPage = () => {
   const [providers, setProviders] = useState(null);
@@ -30,21 +30,35 @@ const SignInPage = () => {
   };
 
   return (
-    <Box
-      maxWidth="500px"
-      mx="auto"
-      className="border-[2px] border-[#ffc53d] rounded"
-    >
-      <h1>Sign In</h1>
-      {providers &&
-        Object.values(providers).map((provider: any) => (
-          <div key={provider.name}>
-            <GoogleButton
-              className="mx-auto"
-              onClick={() => handleSignIn(provider.id)}
-            />
-          </div>
-        ))}
+    <Box p="4" maxWidth="500px" mx="auto">
+      <Card size="3">
+        <Heading size={{ initial: "8", xs: "9" }}>
+          Sign In with your <span className="text-[#ffc53d]">Google</span>{" "}
+          account
+        </Heading>
+
+        {providers &&
+          Object.values(providers).map((provider: any) => (
+            <div className="mt-6" key={provider.name}>
+              <Flex justify="center">
+                <Button
+                  style={{ paddingLeft: 0 }}
+                  size="4"
+                  onClick={() => handleSignIn(provider.id)}
+                >
+                  <Flex
+                    align="center"
+                    justify="center"
+                    className="bg-white h-[48px] w-[48px] rounded-l"
+                  >
+                    <FcGoogle size={25} />
+                  </Flex>
+                  Sign in with Google
+                </Button>
+              </Flex>
+            </div>
+          ))}
+      </Card>
     </Box>
   );
 };

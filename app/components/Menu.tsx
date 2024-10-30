@@ -25,7 +25,7 @@ const Menu = () => {
 
   const handleReviewRoute = () => {
     status === "authenticated"
-      ? router.push("/watchlist")
+      ? router.push("/review")
       : router.push("/auth/signin");
   };
 

@@ -1,6 +1,7 @@
 "use client";
 
 import BackButton from "@/app/components/BackButton";
+import GridSkeleton from "@/app/components/GridSkeleton";
 import PlaceholderAlert from "@/app/components/PlaceholderAlert";
 import ScrollToTopBtn from "@/app/components/ScrollToTopBtn";
 import useData from "@/app/hooks/useData";
@@ -25,7 +26,7 @@ const posterUrl = `https://image.tmdb.org/t/p/w500`;
 const MovieGenrePage = ({ params: { genreId } }: Props) => {
   const decodedGenreId = decodeURIComponent(genreId);
 
-  const { data, hasNextPage, fetchNextPage } = useData<MediaCover>(
+  const { data, hasNextPage, fetchNextPage, isLoading } = useData<MediaCover>(
     "/discover/movie",
     ["movie genre", genreId],
     {
@@ -37,6 +38,10 @@ const MovieGenrePage = ({ params: { genreId } }: Props) => {
 
   const fetchedMediaCount =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
+
+  if (isLoading) {
+    return <GridSkeleton />;
+  }
 
   return (
     <Box px="4">

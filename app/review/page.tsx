@@ -10,6 +10,7 @@ import { GoDash } from "react-icons/go";
 import { TbTrashFilled } from "react-icons/tb";
 import EditReviewModal from "../components/EditReviewModal";
 import PlaceholderAlert from "../components/PlaceholderAlert";
+import UserDataSkeleton from "../components/UserDataSkeleton";
 
 type Review = {
   reviewId: string;
@@ -23,7 +24,7 @@ const mediaImgPath = "https://image.tmdb.org/t/p/w500";
 
 const ReviewPage = () => {
   const queryClient = useQueryClient();
-  const { data: reviews } = useQuery({
+  const { data: reviews, isLoading } = useQuery({
     queryKey: ["reviews"],
     queryFn: async () => {
       try {
@@ -50,6 +51,10 @@ const ReviewPage = () => {
   const handleDeleteItem = (reviewId: string) => {
     removeReviewMutation.mutate({ reviewId });
   };
+
+  if (isLoading) {
+    return <UserDataSkeleton />;
+  }
 
   if (reviews && reviews.length < 1) {
     return (

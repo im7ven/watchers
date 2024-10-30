@@ -14,6 +14,8 @@ import { IoMdRemoveCircleOutline } from "react-icons/io";
 import { TbTrashFilled } from "react-icons/tb";
 import { MdOutlineDelete } from "react-icons/md";
 import React from "react";
+import DetailPageSkeleton from "../components/DetailPageSkeleton";
+import UserDataSkeleton from "../components/UserDataSkeleton";
 
 type WatchListMedia = {
   mediaId: number;
@@ -60,7 +62,7 @@ const UserWatchListPage = () => {
   };
 
   if (isLoading) {
-    return <Spinner />;
+    return <UserDataSkeleton />;
   }
 
   if (media && media.length < 1) {

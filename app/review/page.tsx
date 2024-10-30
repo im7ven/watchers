@@ -9,6 +9,7 @@ import Image from "next/image";
 import { FaRegStar } from "react-icons/fa";
 import { RiEdit2Fill } from "react-icons/ri";
 import { TbTrashFilled } from "react-icons/tb";
+import PlaceholderAlert from "../components/PlaceholderAlert";
 
 type Review = {
   reviewId: string;
@@ -49,6 +50,17 @@ const ReviewPage = () => {
   const handleDeleteItem = (reviewId: string) => {
     removeReviewMutation.mutate({ reviewId });
   };
+
+  if (reviews && reviews.length < 1) {
+    return (
+      <Box px="4">
+        <PlaceholderAlert
+          marginTop="4"
+          message="You currently have no reviewed items"
+        />
+      </Box>
+    );
+  }
 
   return (
     <Box className="space-y-2" p="4">

@@ -67,7 +67,6 @@ const ReviewModal = forwardRef<HTMLDivElement, ReviewProps>(
         reviewPoster,
         reviewTitle,
       };
-      console.log(reviewData);
 
       addReviewMutation.mutate(reviewData);
     };

@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   title: "Watchers",
   description:
     "A mobile-friendly movie app that allows users to explore, review, and save their favorite films and series, featuring detailed information on ratings, casts, and more",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

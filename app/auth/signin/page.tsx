@@ -18,7 +18,10 @@ const SignInPage = () => {
     setTheProviders();
   }, []);
   const handleSignIn = async (providerId: string) => {
-    const result = await signIn(providerId, { redirect: false });
+    const result = await signIn(providerId, {
+      callbackUrl: "/",
+      redirect: true,
+    });
 
     if (result?.error) {
       alert(`Error signing in: ${result.error}`); // Template literal for consistency

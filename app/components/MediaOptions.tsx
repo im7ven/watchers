@@ -1,12 +1,10 @@
 import { DropdownMenu } from "@radix-ui/themes";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { usePathname } from "next/navigation";
 import { BsBookmarkPlusFill } from "react-icons/bs";
-import { MdRateReview } from "react-icons/md";
 import { SlOptionsVertical } from "react-icons/sl";
 import { useToast } from "../contexts/ToastContext";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import ReviewModal from "./ReviewModal";
 
 type Media = {

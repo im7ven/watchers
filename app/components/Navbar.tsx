@@ -4,8 +4,8 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { useSearchValue } from "../contexts/SearchContext";
-import Menu from "./Menu";
 import Logo from "./Logo";
+import Menu from "./Menu";
 
 const Navbar = () => {
   const router = useRouter();

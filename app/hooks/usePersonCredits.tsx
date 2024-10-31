@@ -1,5 +1,5 @@
-import usePerson from "./usePerson";
 import placeholder from "@/public/movie_placeholder.png";
+import usePerson from "./usePerson";
 
 const posterPath = "https://image.tmdb.org/t/p/w500";
 

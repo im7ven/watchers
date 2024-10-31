@@ -1,9 +1,8 @@
 import authOptions from "@/app/auth/authOptions";
 import { addMediaSchema, removeMediaSchema } from "@/app/ValidationSchema";
+import client from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import client from "@/lib/db";
-import { error } from "console";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();

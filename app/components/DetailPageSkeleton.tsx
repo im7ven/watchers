@@ -1,5 +1,4 @@
-import { Skeleton, Box, Flex } from "@radix-ui/themes";
-import React from "react";
+import { Box, Flex, Skeleton } from "@radix-ui/themes";
 
 const DetailPageSkeleton = () => {
   return (

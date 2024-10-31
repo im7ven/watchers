@@ -1,5 +1,4 @@
 import { Box, Flex, Skeleton } from "@radix-ui/themes";
-import React from "react";
 
 const UserDataSkeleton = () => {
   return (

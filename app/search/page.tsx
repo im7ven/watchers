@@ -1,13 +1,12 @@
 "use client";
 
-import { Flex, Box, Text, Button, Container, Badge } from "@radix-ui/themes";
-import React from "react";
-import useSearchData from "../hooks/useSearchData";
-import { useSearchValue } from "../contexts/SearchContext";
+import placeholder from "@/public/movie_placeholder.png";
+import { Badge, Container, Flex, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
-import placeholder from "@/public/movie_placeholder.png";
 import PlaceholderAlert from "../components/PlaceholderAlert";
+import { useSearchValue } from "../contexts/SearchContext";
+import useSearchData from "../hooks/useSearchData";
 
 const SearchResultsPage = () => {
   const { searchVal } = useSearchValue();

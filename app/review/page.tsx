@@ -1,7 +1,7 @@
 "use client";
 
 import placeholderImg from "@/public/movie_placeholder.png";
-import { Box, Button, Flex, Heading, Spinner, Text } from "@radix-ui/themes";
+import { Box, Button, Flex, Heading, Text } from "@radix-ui/themes";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";

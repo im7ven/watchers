@@ -1,6 +1,6 @@
-import useMediaDetails from "./useMediaDetails";
 import placeholderImg from "@/public/headshot-placeholder.png";
 import mediaPlaceholder from "@/public/movie_placeholder.png";
+import useMediaDetails from "./useMediaDetails";
 
 const posterPath = "https://image.tmdb.org/t/p/w500";
 

@@ -4,11 +4,9 @@ import {
   editReviewSchema,
   removeReviewSchema,
 } from "@/app/ValidationSchema";
+import client from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import client from "@/lib/db";
-import { any } from "zod";
-import { error } from "console";
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions);

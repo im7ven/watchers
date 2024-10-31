@@ -1,16 +1,14 @@
 "use client";
 
-import usePerson from "@/app/hooks/usePerson";
-import { Box, Flex, Heading, Skeleton, Spinner, Text } from "@radix-ui/themes";
-import Image from "next/image";
-import React from "react";
-import { TbPointFilled } from "react-icons/tb";
-import placeholder from "@/public/headshot-placeholder.png";
-import EmblaCarousel from "@/app/components/EmblaCarousel";
-import usePersonCredits from "@/app/hooks/usePersonCredits";
-import DetailPageSkeleton from "@/app/components/DetailPageSkeleton";
-import ImageModal from "@/app/components/ImageModal";
 import BackButton from "@/app/components/BackButton";
+import DetailPageSkeleton from "@/app/components/DetailPageSkeleton";
+import EmblaCarousel from "@/app/components/EmblaCarousel";
+import ImageModal from "@/app/components/ImageModal";
+import usePerson from "@/app/hooks/usePerson";
+import usePersonCredits from "@/app/hooks/usePersonCredits";
+import placeholder from "@/public/headshot-placeholder.png";
+import { Box, Flex, Heading, Text } from "@radix-ui/themes";
+import { TbPointFilled } from "react-icons/tb";
 
 type Props = {
   params: { personId: string };

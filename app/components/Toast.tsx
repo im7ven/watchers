@@ -1,7 +1,7 @@
-import { ReactNode, useEffect } from "react";
-import { useToast } from "../contexts/ToastContext";
 import { Flex } from "@radix-ui/themes";
+import { useEffect } from "react";
 import { FaCheckCircle } from "react-icons/fa";
+import { useToast } from "../contexts/ToastContext";
 
 const Toast = () => {
   const { showToast, setShowToast, currentPath } = useToast();

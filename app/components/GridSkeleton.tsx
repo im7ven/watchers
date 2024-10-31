@@ -1,5 +1,4 @@
 import { Box, Container, Grid, Skeleton } from "@radix-ui/themes";
-import React from "react";
 
 const skeletonCount = Array.from({ length: 24 }, (_, index) => index);
 

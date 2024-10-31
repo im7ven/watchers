@@ -3,18 +3,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import posterPlaceholder from "@/public/movie_placeholder.png";
-import { Box, Button, Flex, Heading, Spinner, Text } from "@radix-ui/themes";
+import { Box, Button, Flex, Heading, Text } from "@radix-ui/themes";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { FaRegStar } from "react-icons/fa";
-import { TbPointFilled } from "react-icons/tb";
+import { TbPointFilled, TbTrashFilled } from "react-icons/tb";
 import PlaceholderAlert from "../components/PlaceholderAlert";
-import { IoMdRemoveCircleOutline } from "react-icons/io";
-import { TbTrashFilled } from "react-icons/tb";
-import { MdOutlineDelete } from "react-icons/md";
-import React from "react";
-import DetailPageSkeleton from "../components/DetailPageSkeleton";
 import UserDataSkeleton from "../components/UserDataSkeleton";
 
 type WatchListMedia = {

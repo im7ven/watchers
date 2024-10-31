@@ -1,6 +1,5 @@
-import { Heading, Flex } from "@radix-ui/themes";
+import { Flex, Heading } from "@radix-ui/themes";
 import Link from "next/link";
-import React from "react";
 import { MdSettingsRemote } from "react-icons/md";
 
 const Logo = () => {

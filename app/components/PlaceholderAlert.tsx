@@ -1,5 +1,4 @@
 import { Callout } from "@radix-ui/themes";
-import React from "react";
 import { BsInfoCircleFill } from "react-icons/bs";
 
 type Props = {

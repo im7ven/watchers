@@ -1,6 +1,5 @@
-import { Flex, Button, Box } from "@radix-ui/themes";
+import { Button } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { IoReturnUpBackOutline } from "react-icons/io5";
 
 const BackButton = () => {

@@ -1,8 +1,6 @@
-import React from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import { EmblaOptionsType } from "embla-carousel";
-import Image, { StaticImageData } from "next/image";
 import { Box, Text } from "@radix-ui/themes";
+import useEmblaCarousel from "embla-carousel-react";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
 type Slide = {

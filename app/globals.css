@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  /* scroll-behavior: smooth !important; */
-}
-
 .embla {
   max-width: 100%; /* Adjust to fit your needs */
   margin: auto;

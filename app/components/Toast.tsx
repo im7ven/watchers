@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { Flex } from "@radix-ui/themes";
 import { useEffect } from "react";
 import { FaCheckCircle } from "react-icons/fa";

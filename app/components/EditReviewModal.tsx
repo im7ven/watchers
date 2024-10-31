@@ -80,7 +80,7 @@ const EditReviewModal = ({ reviewId, reviewMessage, reviewRating }: Props) => {
         </Button>
       </Dialog.Trigger>
       <Dialog.Content aria-describedby={undefined} size="3" maxWidth="500px">
-        <Dialog.Title>Add Review</Dialog.Title>
+        <Dialog.Title>Edit Review</Dialog.Title>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box>
             <Flex align="center" gap="1">

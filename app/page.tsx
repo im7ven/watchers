@@ -1,5 +1,6 @@
 "use client";
 
+import placeholderImg from "@/public/movie_placeholder.png";
 import {
   Box,
   Flex,
@@ -15,7 +16,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import GridSkeleton from "./components/GridSkeleton";
 import ScrollToTopBtn from "./components/ScrollToTopBtn";
 import useData from "./hooks/useData";
-import placeholderImg from "@/public/movie_placeholder.png";
 
 type MediaCover = {
   id: number;

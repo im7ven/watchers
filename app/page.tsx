@@ -81,7 +81,13 @@ export default function Home() {
     <main>
       <ScrollToTopBtn />
       <Flex justify="between" align="center">
-        <SegmentedControl.Root ml="1" radius="full" size="1" value={mediaType}>
+        <SegmentedControl.Root
+          my={{ initial: "2", xs: "0" }}
+          ml="1"
+          radius="full"
+          size="1"
+          value={mediaType}
+        >
           <SegmentedControl.Item onClick={onSelectMovie} value="movie">
             Movie
           </SegmentedControl.Item>
@@ -92,14 +98,11 @@ export default function Home() {
 
         {mediaType === "movie" && (
           <Tabs.Root
+            mt={{ initial: "2", xs: "0" }}
             value={selectedTab}
             onValueChange={(value) => onChangeTab(value)}
           >
-            <Tabs.List
-              size={{ initial: "1", xs: "2" }}
-              className="items-center"
-              justify="center"
-            >
+            <Tabs.List size={{ initial: "1", xs: "2" }} justify="center">
               <Tabs.Trigger value="/movie/popular">Popular</Tabs.Trigger>
               <Tabs.Trigger value="/movie/now_playing">
                 Now Playing
@@ -110,14 +113,11 @@ export default function Home() {
         )}
         {mediaType === "tv" && (
           <Tabs.Root
+            mt={{ initial: "2", xs: "0" }}
             value={selectedTab}
             onValueChange={(value) => onChangeTab(value)}
           >
-            <Tabs.List
-              size={{ initial: "1", xs: "2" }}
-              className="items-center"
-              justify="center"
-            >
+            <Tabs.List size={{ initial: "1", xs: "2" }} justify="center">
               <Tabs.Trigger value="/trending/tv/week">Trending</Tabs.Trigger>
               <Tabs.Trigger value="/tv/popular">Popular</Tabs.Trigger>
               <Tabs.Trigger value="/tv/top_rated">Top Rated</Tabs.Trigger>

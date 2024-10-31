@@ -10,6 +10,7 @@ const ImageModal = ({ imgSrc, alt }: Props) => {
   if (typeof imgSrc !== "string") {
     return (
       <Image
+        unoptimized
         className="rounded md:w-[150px] h-auto"
         width={100}
         height={100}
@@ -23,6 +24,7 @@ const ImageModal = ({ imgSrc, alt }: Props) => {
     <Dialog.Root>
       <Dialog.Trigger>
         <Image
+          unoptimized
           className=" w-[100px] md:w-[150px] h-auto "
           width={100}
           height={150}
@@ -36,6 +38,7 @@ const ImageModal = ({ imgSrc, alt }: Props) => {
       <Dialog.Description aria-describedby={`Enlarged ${alt} cover`} />
       <Dialog.Content maxWidth="450px">
         <Image
+          unoptimized
           width={400}
           height={400}
           className="h-auto"

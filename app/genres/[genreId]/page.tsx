@@ -67,6 +67,7 @@ const MovieGenrePage = ({ params: { genreId } }: Props) => {
                 <Box key={movie.id}>
                   <Link href={`/movie/${movie.id}`}>
                     <Image
+                      unoptimized
                       width={165}
                       height={300}
                       src={

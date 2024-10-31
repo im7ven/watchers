@@ -78,6 +78,7 @@ const UserWatchListPage = () => {
           <Link href={`/${item.mediaType}/${item.mediaId}`}>
             <Box width={{ initial: "100px", sm: "150px" }}>
               <Image
+                unoptimized
                 src={
                   item.mediaPoster
                     ? posterUrl + item.mediaPoster

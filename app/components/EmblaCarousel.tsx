@@ -32,6 +32,7 @@ const EmblaCarousel = ({ slides }: Props) => {
             >
               <Box>
                 <Image
+                  unoptimized
                   src={slide.src!}
                   alt={slide.alt}
                   width={200}

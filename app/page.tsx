@@ -140,6 +140,7 @@ export default function Home() {
                     <Image
                       width={165}
                       height={300}
+                      unoptimized
                       src={
                         movie.poster_path
                           ? posterUrl + movie.poster_path

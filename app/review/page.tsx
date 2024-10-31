@@ -73,6 +73,7 @@ const ReviewPage = () => {
         <Box key={review.reviewId}>
           <Flex gap="3">
             <Image
+              unoptimized
               src={
                 review.reviewPoster
                   ? mediaImgPath + review.reviewPoster

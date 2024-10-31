@@ -69,6 +69,7 @@ const ProvidersDialog = ({ media }: Props) => {
               streamProviders?.map((provider) => (
                 <Flex align="center" gap="3" key={provider.provider_id}>
                   <Image
+                    unoptimized
                     src={logoPath + provider.logo_path}
                     height={50}
                     width={50}

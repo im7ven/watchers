@@ -29,6 +29,7 @@ const SearchResultsPage = () => {
             <Flex gap="3">
               <Container className="max-w-[100px] md:max-w-[120px] relative h-[150px] md:h-[180px]">
                 <Image
+                  unoptimized
                   src={
                     media.poster_path
                       ? "https://image.tmdb.org/t/p/w500" + media.poster_path

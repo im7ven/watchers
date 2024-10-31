@@ -43,6 +43,7 @@ const GenrePage = () => {
               className="max-w-[250px] h-[240px] relative  "
             >
               <Image
+                unoptimized
                 className="object-cover opacity-20 absolute inset-0 -z-10"
                 src={genre.image!}
                 alt={genre.name + "background image"}

@@ -106,6 +106,10 @@ const EditReviewModal = ({ reviewId, reviewMessage, reviewRating }: Props) => {
                 value: 3,
                 message: "Review has a minimum of 3 character",
               },
+              validate: {
+                notEmpty: (value) =>
+                  value.trim() !== "" || "Review cannot be empty or whitespace",
+              },
             })}
             my="3"
             placeholder="Write a review"

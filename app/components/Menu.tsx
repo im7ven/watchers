@@ -1,4 +1,11 @@
-import { Avatar, Button, DropdownMenu, Flex, Text } from "@radix-ui/themes";
+import {
+  Avatar,
+  Box,
+  Button,
+  DropdownMenu,
+  Flex,
+  Text,
+} from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -69,11 +76,11 @@ const Menu = () => {
           style={{ flexGrow: 1, justifyContent: "center", width: "100%" }}
         >
           {status === "unauthenticated" ? (
-            <Link href="/api/auth/signin">
+            <Link href="/auth/signin">
               <Button style={{ width: "100%" }}>Login</Button>
             </Link>
           ) : (
-            <Link className="w-full" href="/api/auth/signout">
+            <Link className="w-full" href="/auth/signout">
               <Button style={{ width: "100%" }}>Logout</Button>
             </Link>
           )}

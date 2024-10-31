@@ -14,21 +14,14 @@ const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
-  // pages: {
-  //   signIn: "/auth/signin",
-  // },
-  // callbacks: {
-  //   async jwt({ token, user }) {
-  //     // Log the token for debugging
-  //     console.log("JWT Token:", token);
-  //     return token;
-  //   },
-  //   async session({ session, token }) {
-  //     // Log session data for debugging
-  //     console.log("Session Data:", session);
-  //     return session;
-  //   },
-  // },
+  pages: {
+    signIn: "/auth/signin",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      return token;
+    },
+  },
 };
 
 export default authOptions;

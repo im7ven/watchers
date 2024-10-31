@@ -9,12 +9,6 @@ const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      authorization: {
-        params: {
-          prompt: "consent",
-          redirect_uri: `${process.env.NEXTAUTH_URL}/api/auth/callback/google`,
-        },
-      },
     }),
   ],
   session: {
@@ -24,8 +18,15 @@ const authOptions: NextAuthOptions = {
     signIn: "/auth/signin",
   },
   callbacks: {
-    async redirect({ baseUrl }) {
-      return baseUrl;
+    async jwt({ token, user }) {
+      // Log the token for debugging
+      console.log("JWT Token:", token);
+      return token;
+    },
+    async session({ session, token }) {
+      // Log session data for debugging
+      console.log("Session Data:", session);
+      return session;
     },
   },
 };

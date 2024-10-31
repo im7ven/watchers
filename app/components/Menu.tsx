@@ -80,7 +80,7 @@ const Menu = () => {
               <Button style={{ width: "100%" }}>Login</Button>
             </Link>
           ) : (
-            <Link className="w-full" href="/auth/signout">
+            <Link className="w-full" href="/api/auth/signout">
               <Button style={{ width: "100%" }}>Logout</Button>
             </Link>
           )}

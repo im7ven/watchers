@@ -30,7 +30,7 @@ const GenrePage = () => {
         {genres.map((genre) => (
           <Box
             onClick={() => handleAddGenre(genre.id)}
-            className={` ${
+            className={`cursor-pointer ${
               selectedGenres.includes(genre.id)
                 ? "border-2 border-amber-500"
                 : "border border-[rgba(255,255,255,.2)]"

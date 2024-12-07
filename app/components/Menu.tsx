@@ -32,7 +32,7 @@ const Menu = () => {
   return (
     <DropdownMenu.Root open={open} onOpenChange={setOpen}>
       <DropdownMenu.Trigger>
-        <span>
+        <span className="cursor-pointer">
           <IoMenu size="30" />
         </span>
       </DropdownMenu.Trigger>

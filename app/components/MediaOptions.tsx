@@ -1,11 +1,12 @@
 import { DropdownMenu } from "@radix-ui/themes";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { BsBookmarkPlusFill } from "react-icons/bs";
 import { SlOptionsVertical } from "react-icons/sl";
 import { useToast } from "../contexts/ToastContext";
 import ReviewModal from "./ReviewModal";
+import { useSession } from "next-auth/react";
 
 type Media = {
   mediaId: string;
@@ -20,8 +21,9 @@ type Media = {
 
 const MediaOptions = ({ ...media }: Media) => {
   const queryClient = useQueryClient();
-  const currentPath = usePathname();
   const { setShowToast } = useToast();
+  const { status } = useSession();
+  const router = useRouter();
 
   const addToWatchlist = useMutation<Media, Error, Media>({
     mutationFn: async (media: Media) => {
@@ -41,6 +43,9 @@ const MediaOptions = ({ ...media }: Media) => {
   });
 
   const handleAddToWatchlist = () => {
+    if (status !== "authenticated") {
+      router.push("/auth/signin");
+    }
     addToWatchlist.mutate({
       ...media,
     });

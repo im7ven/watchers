@@ -10,6 +10,7 @@ import {
 } from "@radix-ui/themes";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { forwardRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -31,6 +32,7 @@ type ReviewData = ReviewProps & ReviewForm;
 const ReviewModal = forwardRef<HTMLDivElement, ReviewProps>(
   ({ reviewId, reviewPoster, reviewTitle }, ref) => {
     const router = useRouter();
+    const { status } = useSession();
     const [rating, setRating] = useState<number[]>([50]);
     const [isOpen, setIsOpen] = useState(false);
     const {
@@ -38,6 +40,12 @@ const ReviewModal = forwardRef<HTMLDivElement, ReviewProps>(
       handleSubmit,
       formState: { errors },
     } = useForm<ReviewForm>();
+
+    const validateUser = () => {
+      if (status !== "authenticated") {
+        router.push("/auth/signin");
+      }
+    };
 
     const addReviewMutation = useMutation({
       mutationKey: ["reviews"],
@@ -69,7 +77,7 @@ const ReviewModal = forwardRef<HTMLDivElement, ReviewProps>(
 
     return (
       <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
-        <Dialog.Trigger>
+        <Dialog.Trigger onClick={validateUser}>
           <span className="flex px-[12px] gap-x-2 items-center text-sm hover:bg-[#ffc53d] py-1 hover:text-[#21201c] rounded transition cursor-default">
             <MdRateReview size="22" />
             Add review
